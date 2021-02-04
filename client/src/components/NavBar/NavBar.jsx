@@ -1,10 +1,9 @@
 import React from "react";
-import { Breadcrumb } from "antd";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-
+import { Breadcrumb } from "antd";
 import Reg from "../../containers/Registration/Registration";
-
 import Login from "../../containers/Login/Login";
+
 const NavBar = () => {
   return (
     <Router>
