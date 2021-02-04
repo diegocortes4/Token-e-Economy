@@ -1,11 +1,33 @@
 import React from "react";
+import { Breadcrumb } from "antd";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
+import Reg from "../../containers/Registration/Registration";
+
+import Login from "../../containers/Login/Login";
 const NavBar = () => {
   return (
-    <div>
-      <h1>My Navbar is here!</h1>
-    </div>
+    <Router>
+      <Breadcrumb>
+        <Breadcrumb.Item>Home</Breadcrumb.Item>
+        <Breadcrumb.Item>
+          <a>
+            <Link to={"/reg"}>Reg</Link>
+          </a>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>
+          <a>
+            <Link to={"/login"}>Login</Link>
+          </a>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>An Application</Breadcrumb.Item>
+      </Breadcrumb>
+      <Switch>
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/reg" component={Reg} />
+      </Switch>
+    </Router>
   );
 };
-
+// react-router-dom npm install (import BrowserRouter as Router, Route, Switch, Link)
 export default NavBar;
