@@ -11,7 +11,8 @@
     "client": "cd client && npm run start",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "seed": "node seed/seedDB.js"
   },
   "repository": {
     "type": "git",
@@ -25,11 +26,12 @@
   },
   "homepage": "https://github.com/diegocortes4/Token-e-Economy#readme",
   "dependencies": {
-    "antd": "^4.12.0",
+    "antd": "^4.12.2",
     "axios": "^0.21.1",
     "concurrently": "^5.3.0",
     "express": "^4.17.1",
     "if-env": "^1.0.4",
-    "mongoose": "^5.11.14"
+    "mongoose": "^5.11.14",
+    "morgan": "^1.10.0"
   }
 }
