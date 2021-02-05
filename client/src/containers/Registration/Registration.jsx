@@ -1,9 +1,9 @@
-const Reg = () => {
+const Registration = () => {
   return (
     <>
-      <h1>Data</h1>
+      <h1>Registration goes here.</h1>
     </>
   );
 };
 
-export default Reg;
+export default Registration;
