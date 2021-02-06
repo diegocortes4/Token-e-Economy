@@ -53,6 +53,12 @@ router.put("/api/rewards/:id", ({ body, params }, res) => {
         });
 });
 
+router.delete("/api/rewards/:id", (req, res) => {
+    db.Reward.findByIdAndDelete(req.params.id).then((result) => {
+      res.json(result);
+    });
+  });
+
 // router.get("/api/workouts/range", (req, res) => {
 //     db.Workout.find({}).limit(7).sort({ date: -1 })
 //         .then((dbWorkout) => {
