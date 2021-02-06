@@ -1,36 +1,49 @@
 import React from "react";
-import { Breadcrumb } from "antd";
+import { Layout, Menu } from "antd";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import Registration from "../../containers/Registration/Registration";
 import Login from "../../containers/Login/Login";
 import Dashboard from "../../containers/Dashboard/Dashboard";
+import Task from "../../containers/Task/Task";
 import Rewards from "../../containers/Rewards/Rewards";
 import Communication from "../../containers/Communication/Communication";
+
+const { Header } = Layout;
 
 const NavBar = () => {
   return (
     <Router>
-      <Breadcrumb>
-        <Breadcrumb.Item>
-          <Link to={"/dashboard"}>Dashboard</Link>
-        </Breadcrumb.Item>
-        <Breadcrumb.Item>
-          <Link to={"/registration"}>Registration</Link>
-        </Breadcrumb.Item>
-        <Breadcrumb.Item>
-          <Link to={"/login"}>Login</Link>
-        </Breadcrumb.Item>
-        <Breadcrumb.Item>
-          <Link to={"/rewards"}>Rewards</Link>
-        </Breadcrumb.Item>
-        <Breadcrumb.Item>
-          <Link to={"/communication"}>Communication</Link>
-        </Breadcrumb.Item>
-      </Breadcrumb>
+      <Layout>
+        <Header className="header">
+          <div className="logo" />
+          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
+            <Menu.Item key="1">
+              <Link to={"/login"}>Login</Link>
+            </Menu.Item>
+            <Menu.Item key="2">
+              <Link to={"/registration"}>Registration</Link>
+            </Menu.Item>
+            <Menu.Item key="3">
+              <Link to={"/dashboard"}>Dashboard</Link>
+            </Menu.Item>
+            <Menu.Item key="4">
+              <Link to={"/rewards"}>Rewards</Link>
+            </Menu.Item>
+            <Menu.Item key="5">
+              <Link to={"/task"}>Task</Link>
+            </Menu.Item>
+            <Menu.Item key="6">
+              <Link to={"/communication"}>Communication</Link>
+            </Menu.Item>
+          </Menu>
+        </Header>
+      </Layout>
+
       <Switch>
         <Route path="/login" component={Login} />
         <Route path="/registration" component={Registration} />
         <Route path="/dashboard" component={Dashboard} />
+        <Route path="/task" component={Task} />
         <Route path="/rewards" component={Rewards} />
         <Route path="/communication" component={Communication} />
         <Route exact path="/" component={Dashboard} />
