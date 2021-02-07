@@ -22,7 +22,7 @@ const onFinish = (values) => {
 const Communication = () => {
   return (
     <>
-      return (
+      
       <Form
         {...layout}
         name="nest-messages"
@@ -59,7 +59,7 @@ const Communication = () => {
           </Button>
         </Form.Item>
       </Form>
-      );
+      
       {/* ReactDOM.render(<Demo />, mountNode); */}
     </>
   );
