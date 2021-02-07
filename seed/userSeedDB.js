@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 let User = require("../models/user");
 
+//User seed data
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost/Token-e-Economy",
   {
@@ -50,6 +51,26 @@ let userSeed = [
     },
     lastLogin: {
       type: "02/03/2021",
+    },
+  },
+  {
+    role: {
+      type: "parent",
+    },
+    email: {
+      type: "parent2@email.com",
+    },
+    password: {
+      type: "Password1!",
+    },
+    token_total: {
+      type: "50",
+    },
+    token_type: {
+      type: "Star",
+    },
+    lastLogin: {
+      type: "02/07/2021",
     },
   },
 ];
