@@ -12,7 +12,9 @@
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build",
-    "seed": "node seed/seedDB.js"
+    "userSeed": "node seed/userSeedDB.js",
+    "rewardSeed": "node seed/rewardSeedDB.js",
+    "taskSeed": "node seed/taskSeedDB.js"
   },
   "repository": {
     "type": "git",
@@ -35,4 +37,3 @@
     "morgan": "^1.10.0"
   }
 }
-
