@@ -27,10 +27,10 @@ const NavBar = () => {
               <Link to={"/dashboard"}>Dashboard</Link>
             </Menu.Item>
             <Menu.Item key="4">
-              <Link to={"/rewards"}>Rewards</Link>
+              <Link to={"/task"}>Task</Link>
             </Menu.Item>
             <Menu.Item key="5">
-              <Link to={"/task"}>Task</Link>
+              <Link to={"/rewards"}>Rewards</Link>
             </Menu.Item>
             <Menu.Item key="6">
               <Link to={"/communication"}>Communication</Link>
