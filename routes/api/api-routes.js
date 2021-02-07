@@ -10,6 +10,8 @@ const db = require("../../models");
 //             res.json(err);
 //         });
 // });
+
+//health check route
 router.get("/api/healthcheck", (req, res) => {
     res.json({
         success: true,
@@ -19,7 +21,7 @@ router.get("/api/healthcheck", (req, res) => {
 // router.route("/api/user/:id")
 //   .get(plantsController.findUserById);
 
-//health check route
+//rewards api routes
 router.get("/api/rewards", (req, res) => {
     db.Reward.find({}).then((foundRewards) => {
         res.json(foundRewards);
@@ -55,6 +57,46 @@ router.put("/api/rewards/:id", ({ body, params }, res) => {
 
 router.delete("/api/rewards/:id", (req, res) => {
     db.Reward.findByIdAndDelete(req.params.id).then((result) => {
+      res.json(result);
+    });
+  });
+
+//task api routes
+router.get("/api/tasks", (req, res) => {
+    db.Task.find({}).then((foundTasks) => {
+        res.json(foundTasks);
+    })
+        .catch(err => {
+            res.json(err);
+        });
+});
+
+router.post("/api/tasks", (req, res) => {
+    db.Task.create(req.body).then((newTask) => {
+        res.json(newTask);
+    })
+        .catch(err => {
+            res.json(err);
+        });
+});
+
+router.put("/api/tasks/:id", ({ body, params }, res) => {
+    db.Task.findByIdAndUpdate(
+        params.id,
+        { description: body },
+        // "runValidators" will ensure new exercises meet our schema requirements
+        { new: true, runValidators: true }
+    )
+        .then((updateTask) => {
+            res.json(updateTask);
+        })
+        .catch((err) => {
+            res.json(err);
+        });
+});
+
+router.delete("/api/tasks/:id", (req, res) => {
+    db.Task.findByIdAndDelete(req.params.id).then((result) => {
       res.json(result);
     });
   });
