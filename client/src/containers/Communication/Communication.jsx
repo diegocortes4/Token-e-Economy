@@ -22,7 +22,6 @@ const onFinish = (values) => {
 const Communication = () => {
   return (
     <>
-      
       <Form
         {...layout}
         name="nest-messages"
@@ -32,11 +31,7 @@ const Communication = () => {
         <Form.Item
           name={["user", "name"]}
           label="Name"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
+          rules={[{ required: true }]}
         >
           <Input />
         </Form.Item>
@@ -44,12 +39,16 @@ const Communication = () => {
         <Form.Item
           name={["user", "email"]}
           label="Email"
-          rules={[{ type: "email" }]}
+          rules={[{ type: "email", required: true }]}
         >
           <Input />
         </Form.Item>
 
-        <Form.Item name={["user", "message"]} label="Message">
+        <Form.Item
+          name={["user", "message"]}
+          label="Message"
+          rules={[{ required: true }]}
+        >
           <Input.TextArea />
         </Form.Item>
 
@@ -59,7 +58,7 @@ const Communication = () => {
           </Button>
         </Form.Item>
       </Form>
-      
+
       {/* ReactDOM.render(<Demo />, mountNode); */}
     </>
   );
