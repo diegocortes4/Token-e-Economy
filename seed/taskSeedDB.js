@@ -14,6 +14,9 @@ mongoose.connect(
 
 let taskSeed = [
   {
+    day: {
+      type: "Monday"
+    },
     target_behavior: {
       type: "Get out of bed with no more than one reminder",
     },
