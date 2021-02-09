@@ -26,11 +26,11 @@ const userSchema = new Schema({
   },
   createdAt: {
     type: Number,
-    default: Date.now,
+    
   },
   updatedAt: {
     type: Number,
-    default: Date.now,
+  
   },
 });
 
