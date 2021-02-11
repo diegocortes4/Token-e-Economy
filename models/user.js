@@ -14,6 +14,12 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  tasks_completed: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Task"
+    }
+  ],
   token_total: {
     type: Number,
   },
@@ -26,11 +32,11 @@ const userSchema = new Schema({
   },
   createdAt: {
     type: Number,
-    
+
   },
   updatedAt: {
     type: Number,
-  
+
   },
 });
 
