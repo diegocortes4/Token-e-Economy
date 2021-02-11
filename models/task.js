@@ -4,9 +4,11 @@ const Schema = mongoose.Schema;
 const taskSchema = new Schema({
   day: {
     type: String,
+  },
+  task_name: {
+    type: String,
     required: true,
   },
-
   target_behavior: {
     type: String,
     required: true,
@@ -17,6 +19,15 @@ const taskSchema = new Schema({
   },
   clinician_notes: {
     type: String,
+  },
+  chart: {
+    type: String,
+    enum: ["Yes", "No"],
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+    required: true,
   },
 });
 

@@ -14,64 +14,31 @@ mongoose.connect(
 
 let userSeed = [
   {
-    role: {
-      type: "clinician",
-    },
-    email: {
-      type: "clinician@email.com",
-    },
-    password: {
-      type: "Password1!",
-    },
-    token_total: {
-      type: "100",
-    },
-    token_type: {
-      type: "Sticker",
-    },
-    lastLogin: {
-      type: "02/03/2021",
-    },
+    name: "Clinician Lastname",
+    role: "Clinician",
+    email: "clinician@email.com",
+    password: "Password1!",
+    token_total: "100",
+    token_type: "Sticker",
+    lastLogin: "02/03/2021",
   },
   {
-    role: {
-      type: "parent",
-    },
-    email: {
-      type: "parent@email.com",
-    },
-    password: {
-      type: "Password1!",
-    },
-    token_total: {
-      type: "100",
-    },
-    token_type: {
-      type: "Sticker",
-    },
-    lastLogin: {
-      type: "02/03/2021",
-    },
+    name: "Parent Lastname1",
+    role: "Parent",
+    email: "parent@email.com",
+    password: "Password1!",
+    token_total: "100",
+    token_type: "Sticker",
+    lastLogin: "02/03/2021",
   },
   {
-    role: {
-      type: "parent",
-    },
-    email: {
-      type: "parent2@email.com",
-    },
-    password: {
-      type: "Password1!",
-    },
-    token_total: {
-      type: "50",
-    },
-    token_type: {
-      type: "Star",
-    },
-    lastLogin: {
-      type: "02/07/2021",
-    },
+    name: "Parent Lastname2",
+    role: "Parent",
+    email: "parent2@email.com",
+    password: "Password1!",
+    token_total: "50",
+    token_type: "Star",
+    lastLogin: "02/07/2021",
   },
 ];
 

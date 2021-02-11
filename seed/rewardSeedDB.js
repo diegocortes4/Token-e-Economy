@@ -14,44 +14,24 @@ mongoose.connect(
 
 let rewardSeed = [
   {
-    description: {
-      type: "5 minutes of screen time",
-    },
-    token_value: {
-      type: 1,
-    },
+    description: "5 minutes of screen time",
+    token_value: 1,
   },
   {
-    description: {
-      type: "Dessert after dinner",
-    },
-    token_value: {
-      type: 5,
-    },
+    description: "Dessert after dinner",
+    token_value: 5,
   },
   {
-    description: {
-      type: "Go to pet store to see puppies",
-    },
-    token_value: {
-      type: 50,
-    },
+    description: "Go to pet store to see puppies",
+    token_value: 50,
   },
   {
-    description: {
-      type: "Family bowling/mini-golf night",
-    },
-    token_value: {
-      type: 75,
-    },
+    description: "Family bowling/mini-golf night",
+    token_value: 75,
   },
   {
-    description: {
-      type: "Inexpensive toy",
-    },
-    token_value: {
-      type: 100,
-    },
+    description: "Inexpensive toy",
+    token_value: 100,
   },
 ];
 
