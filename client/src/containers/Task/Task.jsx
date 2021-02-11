@@ -1,10 +1,11 @@
-import React from "react";
-
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Table, Space } from "antd";
+import TaskForm from "../../components/TaskForm/TaskForm";
 
 const { Column } = Table;
 
-const data = [
+const dataOld = [
   {
     key: "1",
     taskName: "Wash Dishes",
@@ -33,27 +34,62 @@ const data = [
 ];
 
 const Task = () => {
+  const [data, setData] = useState([]);
+  const getTasks = () => {
+    axios
+      .get("/api/tasks")
+      .then((response) => {
+        console.log(response.data);
+        setData(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  useEffect(() => {
+    getTasks();
+  }, []);
+  const handleFormSubmit = (e, taskData) => {
+    console.log(taskData);
+    e.preventDefault();
+    axios
+      .post("/api/tasks", taskData)
+      .then((response) => {
+        console.log(response.data);
+        getTasks();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <>
-      <Table dataSource={data}>
-        <Column title="Task Name" dataIndex="taskName" key="taskName" />
+      <Table dataSource={data} rowKey="_id">
+        <Column title="Task Name" dataIndex="task_name" key="task_name" />
         <Column
           title="Token Received"
-          dataIndex="tokenReceived"
-          key="tokenReceived"
+          dataIndex="token_value"
+          key="token_value"
         />
         <Column
           title="Action"
           key="action"
           render={(text, record) => (
             <Space size="middle">
-              <a>Completed</a>
+              <a
+                onClick={() => {
+                  console.log(text._id, record._id);
+                }}
+              >
+                Completed
+              </a>
               <a>Update</a>
               <a>Remove</a>
             </Space>
           )}
         />
       </Table>
+      <TaskForm handleFormSubmit={handleFormSubmit} />
     </>
   );
 };

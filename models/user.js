@@ -1,24 +1,34 @@
 const mongoose = require("mongoose");
+const { schema } = require("./reward");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
+  name: {
+    type: String,
+    trim: true,
+    required: "Enter your name",
+  },
   role: {
     type: String,
+    enum: ["Clinician", "Parent"],
     required: true,
   },
   email: {
     type: String,
-    required: true,
+    trim: true,
+    required: "Enter your email address which will be used for login",
+    index: { unique: true },
   },
   password: {
     type: String,
-    required: true,
+    trim: true,
+    required: "Enter your password",
   },
-  tasks_completed: [
+  tasks_complete: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Task"
-    }
+      ref: "Task",
+    },
   ],
   token_total: {
     type: Number,
@@ -32,11 +42,9 @@ const userSchema = new Schema({
   },
   createdAt: {
     type: Number,
-
   },
   updatedAt: {
     type: Number,
-
   },
 });
 

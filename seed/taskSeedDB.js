@@ -14,51 +14,49 @@ mongoose.connect(
 
 let taskSeed = [
   {
-    day: {
-      type: "Monday"
-    },
-    target_behavior: {
-      type: "Get out of bed with no more than one reminder",
-    },
-    token_value: {
-      type: 1,
-    },
-    clinician_notes: {
-      type: "Parent checks after first reminder",
-    },
+    day: "Monday",
+    target_behavior: "Get out of bed with no more than one reminder",
+    token_value: 1,
+    task_name: "Get up",
+    clinician_notes: "Parent checks after first reminder",
+    chart: "Yes",
+    createdAt: "2021-02-01",
   },
   {
-    target_behavior: {
-      type: "Come downstairs dressed before timer ends",
-    },
-    token_value: {
-      type: 5,
-    },
-    clinician_notes: {
-      type: "Upon coming down stairs",
-    },
+    day: "Tuesday",
+    target_behavior: "Come downstairs dressed before timer ends",
+    token_value: 5,
+    task_name: "Get dressed",
+    clinician_notes: "Upon coming down stairs",
+    chart: "Yes",
+    createdAt: "2021-02-02",
   },
   {
-    target_behavior: {
-      type: "Put away shoes and backpack after school",
-    },
-    token_value: {
-      type: 10,
-    },
-    clinician_notes: {
-      type: "Upon entering house",
-    },
+    day: "Wednesday",
+    target_behavior: "Put away shoes and backpack after school",
+    token_value: 10,
+    task_name: "After school",
+    clinician_notes: "Upon entering house",
+    chart: "Yes",
+    createdAt: "2021-02-03",
   },
   {
-    target_behavior: {
-      type: "Follow all Behavior Rules all day",
-    },
-    token_value: {
-      type: 25,
-    },
-    clinician_notes: {
-      type: "When child presents ready for bed",
-    },
+    day: "Thursday",
+    target_behavior: "Follow all Behavior Rules all day",
+    token_value: 25,
+    task_name: "End of day check",
+    clinician_notes: "When child presents ready for bed",
+    chart: "Yes",
+    createdAt: "2021-02-04",
+  },
+  {
+    day: "",
+    target_behavior: "Follow all Behavior Rules all day",
+    token_value: 25,
+    task_name: "End of day check",
+    clinician_notes: "When child presents ready for bed",
+    chart: "No",
+    createdAt: "2021-02-10",
   },
 ];
 
