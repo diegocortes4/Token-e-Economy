@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button, Checkbox } from "antd";
 import { useState } from "react";
 // import { useHistory } from "react-router-dom";
 // import jwt from "jsonwebtoken";
@@ -14,11 +14,11 @@ const tailLayout = {
 };
 
 const onFinish = (values: any) => {
-  console.log('Success:', values);
+  console.log("Success:", values);
 };
 
 const onFinishFailed = (errorInfo: any) => {
-  console.log('Failed:', errorInfo);
+  console.log("Failed:", errorInfo);
 };
 
 const Login = ({ setToken }) => {
@@ -51,61 +51,68 @@ const Login = ({ setToken }) => {
       });
   };
 
-    return (
-      <>
-        <h1>Data Login</h1>
+  return (
+    <>
+      <h1>Token-e-Economy</h1>
 
-        <Form
-          {...layout}
-          name="basic"
-          initialValues={{ remember: true }}
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
+      <Form
+        {...layout}
+        name="basic"
+        initialValues={{ remember: true }}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+      >
+        <Form.Item
+          label="Username"
+          name="username"
+          id="username"
+          type="username"
+          value={username}
+          onChange={(e) => {
+            setUsername(e.target.value);
+          }}
+          rules={[{ required: true, message: "Please input your username!" }]}
         >
-          <Form.Item
-            label="Username"
-            name="username"
-            id="username"
-            type="username"
-            value={username}
-            onChange={(e) => {
-              setUsername(e.target.value);
-            }}
-            rules={[{ required: true, message: 'Please input your username!' }]}
-          >
-            <Input />
-          </Form.Item>
+          <Input />
+        </Form.Item>
 
-          <Form.Item
-            label="Password"
-            name="password"
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-            rules={[{ required: true, message: 'Please input your password!' }]}
-          >
-            <Input.Password />
-          </Form.Item>
+        <Form.Item
+          label="Password"
+          name="password"
+          id="password"
+          type="password"
+          value={password}
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+          rules={[{ required: true, message: "Please input your password!" }]}
+        >
+          <Input.Password />
+        </Form.Item>
 
-          <Form.Item {...tailLayout} name="remember" valuePropName="checked">
+        <Form.Item {...tailLayout}>
+          <Form.Item name="remember" valuePropName="checked" noStyle>
             <Checkbox>Remember me</Checkbox>
           </Form.Item>
 
-          <Form.Item {...tailLayout}>
-            <Button
-              type="submit"
-              htmlType="submit"
-              onClick = {handleFormSubmit}
-            >
-              Submit
-            </Button>
-          </Form.Item>
-        </Form>
-      </>
-    );
-  };
+          <a className="login-form-forgot" href="">
+            Forgot password
+          </a>
+        </Form.Item>
 
-  export default Login;
+        <Form.Item {...tailLayout}>
+          <Button
+            type="primary"
+            htmlType="submit"
+            className="login-form-button"
+          >
+            Log in
+          </Button>
+          Or <a href="">register now!</a>
+        </Form.Item>
+      </Form>
+    </>
+  );
+};
+
+export default Login;
