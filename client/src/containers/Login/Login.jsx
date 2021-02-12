@@ -2,8 +2,9 @@ import React from "react";
 import axios from "axios";
 import { Form, Input, Button, Checkbox } from "antd";
 import { useState } from "react";
-// import { useHistory } from "react-router-dom";
-// import jwt from "jsonwebtoken";
+
+import { useHistory } from "react-router-dom";
+import jwt from "jsonwebtoken";
 
 const layout = {
   labelCol: { span: 8 },
@@ -25,7 +26,7 @@ const Login = ({ setToken }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  // const history = useHistory();
+  const history = useHistory();
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -33,34 +34,36 @@ const Login = ({ setToken }) => {
       .post("/api/auth/login", { username, password })
       .then((response) => {
         console.log(response.data);
-        // jwt.verify(
-        //   response.data.token,
-        //   process.env.REACT_APP_JWT_SIGNATURE,
-        //   (err, decoded) => {
-        //     if (err) {
-        //       console.log(err);
-        //     } else {
-        //       setToken(response.data.token);
-        //       history.push("/admin");
-        //     }
-        //   }
-        // );
+        jwt.verify(
+          response.data.token,
+          process.env.REACT_APP_JWT_SIGNATURE,
+          (err, decoded) => {
+            if (err) {
+              console.log(err);
+            } else {
+              setToken(response.data.token);
+              history.push("/admin");
+            }
+          }
+        );
       })
       .catch((err) => {
         console.log(err);
       });
-  };
+    }
 
-  return (
+  
+    return (
     <>
       <h1>Token-e-Economy</h1>
 
       <Form
+     onSubmit={Login}
         {...layout}
         name="basic"
         initialValues={{ remember: true }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
+        // onFinish={onFinish}
+        // onFinishFailed={onFinishFailed}
       >
         <Form.Item
           label="Username"
@@ -113,6 +116,6 @@ const Login = ({ setToken }) => {
       </Form>
     </>
   );
-};
 
+};
 export default Login;
