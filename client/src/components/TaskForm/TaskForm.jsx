@@ -13,22 +13,23 @@ const tailLayout = {
 const TaskForm = ({ handleFormSubmit }) => {
   const [task_name, set_task_name] = useState("");
   const [target_behavior, set_target_behavior] = useState("");
+  const [clinician_notes, set_clinician_notes] = useState("");
   const [token_value, set_token_value] = useState("");
-
-  //   we should probably use camel case for our model fields
-  //   do we need to change our API routes to axios?
 
   return (
     <>
       <h1>Create New Task</h1>
-      {/* adding onSubmit to allow for clicking the button or pressing enter. Add above too.  Also installed axios on client*/}
+
       <Form
         {...layout}
         name="basic"
-        // onFinish={onFinish}
-        // onFinishFailed={onFinishFailed}
         onSubmit={(e) => {
-          handleFormSubmit(e, { task_name, target_behavior, token_value });
+          handleFormSubmit(e, {
+            task_name,
+            target_behavior,
+            clinician_notes,
+            token_value,
+          });
         }}
       >
         <Form.Item label="Task Name" name="task_name">
@@ -57,6 +58,19 @@ const TaskForm = ({ handleFormSubmit }) => {
           />
         </Form.Item>
 
+        <Form.Item label="Clinician Notes" name="clinician_notes">
+          <Input
+            placeholder="Clinician Notes"
+            id="clinician_notes"
+            type="text"
+            name="clinician_notes"
+            value={clinician_notes}
+            onChange={(e) => {
+              set_clinician_notes(e.target.value);
+            }}
+          />
+        </Form.Item>
+
         <Form.Item label="Token Value" name="token_value">
           <Input
             placeholder="Token Value"
@@ -70,14 +84,17 @@ const TaskForm = ({ handleFormSubmit }) => {
           />
         </Form.Item>
 
-        <button type="submit">Test Button</button>
-
         <Form.Item {...tailLayout}>
           <Button
             type="submit"
             htmlType="submit"
             onClick={(e) => {
-              handleFormSubmit(e, { task_name, target_behavior, token_value });
+              handleFormSubmit(e, {
+                task_name,
+                target_behavior,
+                clinician_notes,
+                token_value,
+              });
             }}
           >
             Submit
