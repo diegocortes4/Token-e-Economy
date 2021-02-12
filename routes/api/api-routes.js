@@ -43,9 +43,10 @@ router.post("/api/rewards", (req, res) => {
 });
 
 router.put("/api/rewards/:id", ({ body, params }, res) => {
+  console.log(body);
   db.Reward.findByIdAndUpdate(
     params.id,
-    { description: body },
+    { description: body.description, token_value: body.token_value },
     // "runValidators" will ensure new exercises meet our schema requirements
     { new: true, runValidators: true }
   )
