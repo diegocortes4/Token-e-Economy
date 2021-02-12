@@ -6,6 +6,7 @@ import Login from "../../containers/Login/Login";
 import Dashboard from "../../containers/Dashboard/Dashboard";
 import Task from "../../containers/Task/Task";
 import Rewards from "../../containers/Rewards/Rewards";
+import RewardsUpdate from "../../containers/RewardsUpdate/RewardsUpdate";
 import Communication from "../../containers/Communication/Communication";
 
 const { Header } = Layout;
@@ -45,6 +46,7 @@ const NavBar = () => {
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/task" component={Task} />
         <Route path="/rewards" component={Rewards} />
+        <Route path="/rewards/update/:id" component={RewardsUpdate} />
         <Route path="/communication" component={Communication} />
         <Route exact path="/" component={Dashboard} />
       </Switch>
