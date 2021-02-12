@@ -5,33 +5,33 @@ import TaskForm from "../../components/TaskForm/TaskForm";
 
 const { Column } = Table;
 
-const dataOld = [
-  {
-    key: "1",
-    taskName: "Wash Dishes",
-    tokenReceived: "5",
-  },
-  {
-    key: "2",
-    taskName: "Clean Room",
-    tokenReceived: "5",
-  },
-  {
-    key: "3",
-    taskName: "Brush Teeth",
-    tokenReceived: "2",
-  },
-  {
-    key: "4",
-    taskName: "Do Homework",
-    tokenReceived: "3",
-  },
-  {
-    key: "5",
-    taskName: "Make Bed",
-    tokenReceived: "3",
-  },
-];
+// const dataOld = [
+//   {
+//     key: "1",
+//     taskName: "Wash Dishes",
+//     tokenReceived: "5",
+//   },
+//   {
+//     key: "2",
+//     taskName: "Clean Room",
+//     tokenReceived: "5",
+//   },
+//   {
+//     key: "3",
+//     taskName: "Brush Teeth",
+//     tokenReceived: "2",
+//   },
+//   {
+//     key: "4",
+//     taskName: "Do Homework",
+//     tokenReceived: "3",
+//   },
+//   {
+//     key: "5",
+//     taskName: "Make Bed",
+//     tokenReceived: "3",
+//   },
+// ];
 
 const Task = () => {
   const [data, setData] = useState([]);
@@ -66,6 +66,16 @@ const Task = () => {
     <>
       <Table dataSource={data} rowKey="_id">
         <Column title="Task Name" dataIndex="task_name" key="task_name" />
+        <Column
+          title="Target Behavior"
+          dataIndex="target_behavior"
+          key="target_behavior"
+        />
+        <Column
+          title="Clinician Notes"
+          dataIndex="clinician_notes"
+          key="clinician_notes"
+        />
         <Column
           title="Token Received"
           dataIndex="token_value"
