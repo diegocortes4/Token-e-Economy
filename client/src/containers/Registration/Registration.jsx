@@ -183,7 +183,6 @@ const Registration = () => {
           label="Phone Number"
           rules={[
             {
-              required: true,
               message: "Please enter your phone number!",
             },
           ]}
