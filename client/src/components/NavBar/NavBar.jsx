@@ -45,10 +45,10 @@ const NavBar = () => {
         <Route path="/registration" component={Registration} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/task" component={Task} />
-        <Route path="/rewards" component={Rewards} />
-        <Route path="/rewards/update/:id" component={RewardsUpdate} />
+        <Route exact path="/rewards" component={Rewards} />
+        <Route exact path="/rewards/update/:id" component={RewardsUpdate} />
         <Route path="/communication" component={Communication} />
-        <Route exact path="/" component={Dashboard} />
+        <Route exact path="/" component={Login} />
       </Switch>
     </Router>
   );

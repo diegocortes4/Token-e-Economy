@@ -32,6 +32,17 @@ router.get("/api/rewards", (req, res) => {
     });
 });
 
+router.get("/api/rewards/:id", ({ body, params }, res) => {
+  console.log(body);
+  db.Reward.findById(params.id)
+    .then((updateReward) => {
+      res.json(updateReward);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
+
 router.post("/api/rewards", (req, res) => {
   db.Reward.create(req.body)
     .then((newReward) => {

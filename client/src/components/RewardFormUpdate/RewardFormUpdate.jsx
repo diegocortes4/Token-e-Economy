@@ -10,10 +10,15 @@ const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 };
 
-const RewardForm = ({ handleFormSubmit }) => {
-  const [description, set_description] = useState("");
-  const [token_value, set_token_value] = useState("");
-
+const RewardForm = ({
+  handleFormSubmit,
+  description,
+  token_value,
+  set_description,
+  set_token_value,
+}) => {
+  console.log(description);
+  console.log(token_value);
   return (
     <>
       <h1>Update Reward</h1>
@@ -25,7 +30,7 @@ const RewardForm = ({ handleFormSubmit }) => {
           handleFormSubmit(e, { description, token_value });
         }}
       >
-        <Form.Item label="Reward Description" name="description">
+        <Form.Item label="Reward Description">
           <Input
             placeholder="Reward Description"
             id="description"
@@ -38,7 +43,7 @@ const RewardForm = ({ handleFormSubmit }) => {
           />
         </Form.Item>
 
-        <Form.Item label="Token Value" name="token_value">
+        <Form.Item label="Token Value">
           <Input
             placeholder="Token Value"
             id="token_value"
