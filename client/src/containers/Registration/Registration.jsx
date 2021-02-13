@@ -1,6 +1,7 @@
 import React from "react";
 import { Form, Input, Tooltip, Select, Checkbox, Button } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
+// import { FormInstance } from 'antd/lib/form';
 import axios from "axios";
 
 const { Option } = Select;
@@ -13,6 +14,9 @@ const formItemLayout = {
     sm: {
       span: 8,
     },
+    lg: {
+      span: 8,
+    },
   },
   wrapperCol: {
     xs: {
@@ -20,6 +24,9 @@ const formItemLayout = {
     },
     sm: {
       span: 16,
+    },
+    lg: {
+      span: 8,
     },
   },
 };
@@ -37,12 +44,41 @@ const tailFormItemLayout = {
 };
 
 const Registration = () => {
+  // formRef = React.createRef<FormInstance>(value);
+
+  //   onRoleChange = (value: string) => {
+  //     switch (value) {
+  //       case 'Clinician':
+  //         this.formRef.current!.setFieldsValue({ note: 'Please enter the clinician name here.' });
+  //         return;
+  //       case 'Parent':
+  //         this.formRef.current!.setFieldsValue({ note: 'Hi, lady!' });
+  //         return;
+  //       // case 'other':
+  //       //   this.formRef.current!.setFieldsValue({ note: 'Hi there!' });
+  //       //   return;
+  //     }
+  //   };
+
   const [form] = Form.useForm();
 
-  const onFinish = (values) => {
+  const onFinish = (values: any) => {
     console.log("Received values of form: ", values);
-    axios.post("/api/auth", values).then(response => console.log(response.data))
+    axios
+      .post("/api/auth", values)
+      .then((response) => console.log(response.data));
   };
+
+  // onReset = () => {
+  //   this.formRef.current!.resetFields();
+  // };
+
+  // onFill = () => {
+  //   this.formRef.current!.setFieldsValue({
+  //     note: 'Hello world!',
+  //     gender: 'male',
+  //   });
+  // };
 
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
@@ -64,17 +100,33 @@ const Registration = () => {
         form={form}
         name="register"
         onFinish={onFinish}
+        // ref={this.formRef} name="control-ref" onFinish={this.onFinish}
         initialValues={{
           prefix: "1",
         }}
         scrollToFirstError
       >
         <Form.Item
+          name="role"
+          label="Your Role"
+          rules={[
+            {
+              required: true,
+              message: "Please choose a role!",
+            },
+          ]}
+        >
+          <Select>
+            <Select.Option value="Role">Clinician</Select.Option>
+            <Select.Option value="Role">Parent</Select.Option>
+          </Select>
+        </Form.Item>
+        <Form.Item
           name="name"
           label={
             <span>
-              Child's Name&nbsp;
-              <Tooltip title="Please enter the name of the child enrolled in this program.">
+              Name&nbsp;
+              <Tooltip title="Please enter the name of the child if you are a parent. Otherwise, please enter your name if you are a clinician.">
                 <QuestionCircleOutlined />
               </Tooltip>
             </span>
@@ -82,7 +134,8 @@ const Registration = () => {
           rules={[
             {
               required: true,
-              message: "Please enter the name of the child!",
+              message:
+                "Please enter a name based on the role you selected above!",
               whitespace: true,
             },
           ]}
@@ -92,7 +145,14 @@ const Registration = () => {
 
         <Form.Item
           name="email"
-          label="E-mail"
+          label={
+            <span>
+              Email Address&nbsp;
+              <Tooltip title="This email address will be used as your login name.">
+                <QuestionCircleOutlined />
+              </Tooltip>
+            </span>
+          }
           rules={[
             {
               type: "email",
@@ -166,6 +226,32 @@ const Registration = () => {
         </Form.Item>
 
         <Form.Item
+          name="token_type"
+          label={
+            <span>
+              Default Token Type&nbsp;
+              <Tooltip title="Please choose a token type that fits the child's interest.">
+                <QuestionCircleOutlined />
+              </Tooltip>
+            </span>
+          }
+          rules={[
+            {
+              required: true,
+              message: "Please choose a default token type!",
+            },
+          ]}
+        >
+          <Select>
+            <Select.Option value="Token Type">Stickers</Select.Option>
+            <Select.Option value="Token Type">Stars</Select.Option>
+            <Select.Option value="Token Type">Points</Select.Option>
+            <Select.Option value="Token Type">Coins</Select.Option>
+            <Select.Option value="Token Type">Dollars</Select.Option>
+          </Select>
+        </Form.Item>
+
+        <Form.Item
           name="agreement"
           valuePropName="checked"
           rules={[
@@ -173,13 +259,15 @@ const Registration = () => {
               validator: (_, value) =>
                 value
                   ? Promise.resolve()
-                  : Promise.reject("Should accept agreement"),
+                  : Promise.reject(
+                      "Please review and accept the agreement before creating an account!"
+                    ),
             },
           ]}
           {...tailFormItemLayout}
         >
           <Checkbox>
-            I have read the <a href="">agreement</a>
+            I have read and accept the <a href="">agreement</a>
           </Checkbox>
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
