@@ -3,15 +3,18 @@ const router = express.Router();
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { request } = require("express");
 
 router.post("/", (req, res) => {
+    console.log(req.body);
   bcrypt.hash(req.body.password, 10).then((hashedPassword) => {
     console.log(hashedPassword);
-    const newUser = {
-      email: req.body.email,
-      password: hashedPassword,
-    };
-    User.create(newUser)
+    // const newUser = {
+    //   email: req.body.email,
+    //   password: hashedPassword,
+    // };
+    req.body.password = hashedPassword;
+    User.create(req.body)
       .then((newUser) => {
 
         const token = jwt.sign(
@@ -49,6 +52,7 @@ router.post("/login", (req, res) => {
         console.log(token);
         res.json({
           token: token,
+          id: foundUser._id
         });
 
       } else {

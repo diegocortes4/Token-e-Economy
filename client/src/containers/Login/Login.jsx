@@ -16,6 +16,27 @@ const tailLayout = {
 
 const onFinish = (values: any) => {
   console.log("Success:", values);
+  axios
+      .post("/api/auth/login", { email: values.username, password: values.password })
+      .then((response) => {
+        console.log(response.data);
+        sessionStorage.setItem("currentuserid",response.data.id)
+        // jwt.verify(
+        //   response.data.token,
+        //   process.env.REACT_APP_JWT_SIGNATURE,
+        //   (err, decoded) => {
+        //     if (err) {
+        //       console.log(err);
+        //     } else {
+        //       setToken(response.data.token);
+        //       history.push("/admin");
+        //     }
+        //   }
+        // );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 };
 
 const onFinishFailed = (errorInfo: any) => {
@@ -29,11 +50,12 @@ const Login = ({ setToken }) => {
   // const history = useHistory();
 
   const handleFormSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     axios
       .post("/api/auth/login", { username, password })
       .then((response) => {
         console.log(response.data);
+        sessionStorage.setItem("currentuserid",response.data.id)
         // jwt.verify(
         //   response.data.token,
         //   process.env.REACT_APP_JWT_SIGNATURE,

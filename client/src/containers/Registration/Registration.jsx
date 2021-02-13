@@ -1,6 +1,7 @@
 import React from "react";
 import { Form, Input, Tooltip, Select, Checkbox, Button } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
+import axios from "axios";
 
 const { Option } = Select;
 
@@ -40,6 +41,7 @@ const Registration = () => {
 
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
+    axios.post("/api/auth", values).then(response => console.log(response.data))
   };
 
   const prefixSelector = (
@@ -68,7 +70,7 @@ const Registration = () => {
         scrollToFirstError
       >
         <Form.Item
-          name="Child Name"
+          name="name"
           label={
             <span>
               Child's Name&nbsp;

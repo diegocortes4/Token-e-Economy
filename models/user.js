@@ -11,7 +11,7 @@ const userSchema = new Schema({
   role: {
     type: String,
     enum: ["Clinician", "Parent"],
-    required: true,
+    // required: true,
   },
   email: {
     type: String,
@@ -35,7 +35,7 @@ const userSchema = new Schema({
   },
   token_type: {
     type: String,
-    required: true,
+    // required: true,
   },
   lastLogin: {
     type: Date,
