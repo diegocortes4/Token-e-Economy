@@ -1,7 +1,6 @@
 import React from "react";
 import { Form, Input, Tooltip, Select, Checkbox, Button } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
-// import { FormInstance } from 'antd/lib/form';
 import axios from "axios";
 
 const { Option } = Select;
@@ -44,22 +43,6 @@ const tailFormItemLayout = {
 };
 
 const Registration = () => {
-  // formRef = React.createRef<FormInstance>(value);
-
-  //   onRoleChange = (value: string) => {
-  //     switch (value) {
-  //       case 'Clinician':
-  //         this.formRef.current!.setFieldsValue({ note: 'Please enter the clinician name here.' });
-  //         return;
-  //       case 'Parent':
-  //         this.formRef.current!.setFieldsValue({ note: 'Hi, lady!' });
-  //         return;
-  //       // case 'other':
-  //       //   this.formRef.current!.setFieldsValue({ note: 'Hi there!' });
-  //       //   return;
-  //     }
-  //   };
-
   const [form] = Form.useForm();
 
   const onFinish = (values: any) => {
@@ -68,17 +51,6 @@ const Registration = () => {
       .post("/api/auth", values)
       .then((response) => console.log(response.data));
   };
-
-  // onReset = () => {
-  //   this.formRef.current!.resetFields();
-  // };
-
-  // onFill = () => {
-  //   this.formRef.current!.setFieldsValue({
-  //     note: 'Hello world!',
-  //     gender: 'male',
-  //   });
-  // };
 
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
@@ -100,7 +72,6 @@ const Registration = () => {
         form={form}
         name="register"
         onFinish={onFinish}
-        // ref={this.formRef} name="control-ref" onFinish={this.onFinish}
         initialValues={{
           prefix: "1",
         }}
@@ -278,7 +249,6 @@ const Registration = () => {
       </Form>
     </>
   );
-  // };
 };
 
 export default Registration;
