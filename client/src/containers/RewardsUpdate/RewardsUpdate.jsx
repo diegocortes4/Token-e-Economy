@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 import axios from "axios";
 import { Table, Space } from "antd";
 import RewardFormUpdate from "../../components/RewardFormUpdate/RewardFormUpdate";
@@ -8,13 +8,20 @@ const { Column } = Table;
 
 const Rewards = (props) => {
   const [data, setData] = useState([]);
+  const [description, set_description] = useState("");
+  const [token_value, set_token_value] = useState("");
   const history = useHistory();
+  const {
+    match: { params },
+  } = props;
   const getRewards = () => {
     axios
-      .get("/api/rewards")
+      .get(`/api/rewards/${params.id}`)
       .then((response) => {
         console.log(response.data);
         setData(response.data);
+        set_description(response.data.description);
+        set_token_value(response.data.token_value);
       })
       .catch((err) => {
         console.log(err);
@@ -26,14 +33,18 @@ const Rewards = (props) => {
   const handleFormSubmit = (e, taskData) => {
     console.log(taskData);
     e.preventDefault();
-    const {
-      match: { params },
-    } = props;
+    // const {
+    //   match: { params },
+    // } = props;
     axios
       .put(`/api/rewards/${params.id}`, taskData)
       .then((response) => {
         console.log(response.data);
         getRewards();
+        // <Redirect to="/rewards" />;
+        //look for a react router dom way to redirect
+        // window.location.href = "/rewards";
+        history.push("/rewards");
         // setData(response.data);
       })
       .catch((err) => {
@@ -43,7 +54,7 @@ const Rewards = (props) => {
   const updateRewards = (id) => {};
   return (
     <>
-      <Table dataSource={data} rowKey="_id">
+      {/* <Table dataSource={data} rowKey="_id">
         <Column title="Reward Name" dataIndex="description" key="description" />
         <Column title="Token Value" dataIndex="token_value" key="token_value" />
         <Column
@@ -72,8 +83,15 @@ const Rewards = (props) => {
             </Space>
           )}
         />
-      </Table>
-      <RewardFormUpdate handleFormSubmit={handleFormSubmit} />
+      </Table> */}
+      <RewardFormUpdate
+        {...data}
+        handleFormSubmit={handleFormSubmit}
+        set_description={set_description}
+        description={description}
+        set_token_value={set_token_value}
+        token_value={token_value}
+      />
     </>
   );
 };
