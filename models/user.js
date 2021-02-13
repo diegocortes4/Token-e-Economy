@@ -35,7 +35,10 @@ const userSchema = new Schema({
   },
   token_type: {
     type: String,
-    // required: true,
+    required: true,
+  },
+  phone: {
+    type: Number,
   },
   lastLogin: {
     type: Date,
