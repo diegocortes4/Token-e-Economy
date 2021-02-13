@@ -37,6 +37,9 @@ const userSchema = new Schema({
     type: String,
     // required: true,
   },
+  phone: {
+    type: Number,
+  },
   lastLogin: {
     type: Date,
   },
