@@ -52,6 +52,7 @@ router.post("/login", (req, res) => {
         console.log(token);
         res.json({
           token: token,
+          id: foundUser._id
         });
 
       } else {
