@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { Table, Space } from "antd";
 import TaskForm from "../../components/TaskForm/TaskForm";
@@ -35,6 +36,7 @@ const { Column } = Table;
 
 const Task = () => {
   const [data, setData] = useState([]);
+  const history = useHistory();
   const getTasks = () => {
     axios
       .get("/api/tasks")
@@ -62,6 +64,21 @@ const Task = () => {
         console.log(err);
       });
   };
+  const updateTask = (id) => {
+    axios
+      .put(`/api/tasks/${id}`, {
+        task_name: "update",
+        target_behavior: "update",
+        clinician_notes: "update",
+        token_value: 5,
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <>
       <Table dataSource={data} rowKey="_id">
@@ -84,16 +101,24 @@ const Task = () => {
         <Column
           title="Action"
           key="action"
-          render={(text, record) => (
+          render={(record) => (
             <Space size="middle">
               <a
                 onClick={() => {
-                  console.log(text._id, record._id);
+                  console.log(record._id);
+                  updateTask(record._id);
                 }}
               >
                 Completed
               </a>
-              <a>Update</a>
+              <a
+                onClick={() => {
+                  console.log(record._id);
+                  history.push(`/task/update/${record._id}`);
+                }}
+              >
+                Update
+              </a>
               <a>Remove</a>
             </Space>
           )}
