@@ -47,6 +47,16 @@ const Rewards = () => {
         console.log(err);
       });
   };
+  const deleteRewards = (id) => {
+    axios
+      .delete(`/api/rewards/${id}`)
+      .then(() => {
+        getRewards();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <>
       <Table dataSource={data} rowKey="_id">
@@ -67,7 +77,14 @@ const Rewards = () => {
               >
                 Update
               </a>
-              <a>Remove</a>
+              <a
+                onClick={() => {
+                  console.log(record._id);
+                  deleteRewards(record._id);
+                }}
+              >
+                Remove
+              </a>
             </Space>
           )}
         />

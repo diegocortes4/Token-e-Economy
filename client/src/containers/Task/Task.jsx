@@ -79,6 +79,16 @@ const Task = () => {
         console.log(err);
       });
   };
+  const deleteTask = (id) => {
+    axios
+      .delete(`/api/tasks/${id}`)
+      .then(() => {
+        getTasks();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <>
       <Table dataSource={data} rowKey="_id">
@@ -112,7 +122,14 @@ const Task = () => {
               >
                 Update
               </a>
-              <a>Remove</a>
+              <a
+                onClick={() => {
+                  console.log(record._id);
+                  deleteTask(record._id);
+                }}
+              >
+                Remove
+              </a>
             </Space>
           )}
         />
