@@ -57,14 +57,7 @@ const Rewards = () => {
           key="action"
           render={(record) => (
             <Space size="middle">
-              <a
-                onClick={() => {
-                  console.log(record._id);
-                  updateRewards(record._id);
-                }}
-              >
-                Completed
-              </a>
+              <a>Completed</a>
               <a
                 onClick={() => {
                   console.log(record._id);
