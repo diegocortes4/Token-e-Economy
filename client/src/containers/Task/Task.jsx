@@ -104,10 +104,10 @@ const Task = () => {
           render={(record) => (
             <Space size="middle">
               <a
-                onClick={() => {
-                  console.log(record._id);
-                  updateTask(record._id);
-                }}
+              // onClick={() => {
+              //   console.log(record._id);
+              //   updateTask(record._id);
+              // }}
               >
                 Completed
               </a>
