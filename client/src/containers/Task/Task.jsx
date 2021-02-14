@@ -103,14 +103,7 @@ const Task = () => {
           key="action"
           render={(record) => (
             <Space size="middle">
-              <a
-              // onClick={() => {
-              //   console.log(record._id);
-              //   updateTask(record._id);
-              // }}
-              >
-                Completed
-              </a>
+              <a>Completed</a>
               <a
                 onClick={() => {
                   console.log(record._id);
