@@ -1,16 +1,6 @@
 const router = require("express").Router();
 const db = require("../../models");
 
-// router.get("/api/workouts", (req, res) => {
-//     db.Workout.find()
-//         .then(dbWorkout => {
-//             res.json(dbWorkout);
-//         })
-//         .catch(err => {
-//             res.json(err);
-//         });
-// });
-
 //health check route
 router.get("/api/healthcheck", (req, res) => {
   res.json({
@@ -86,6 +76,17 @@ router.get("/api/tasks", (req, res) => {
     });
 });
 
+router.get("/api/tasks/:id", ({ body, params }, res) => {
+  console.log(body);
+  db.Task.findById(params.id)
+    .then((updateTask) => {
+      res.json(updateTask);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
+
 router.post("/api/tasks", (req, res) => {
   db.Task.create(req.body)
     .then((newTask) => {
@@ -99,7 +100,12 @@ router.post("/api/tasks", (req, res) => {
 router.put("/api/tasks/:id", ({ body, params }, res) => {
   db.Task.findByIdAndUpdate(
     params.id,
-    { description: body },
+    {
+      task_name: body.task_name,
+      target_behavior: body.target_behavior,
+      clinician_notes: body.clinician_notes,
+      token_value: body.token_value,
+    },
     // "runValidators" will ensure new exercises meet our schema requirements
     { new: true, runValidators: true }
   )

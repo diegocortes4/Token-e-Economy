@@ -5,6 +5,7 @@ import Registration from "../../containers/Registration/Registration";
 import Login from "../../containers/Login/Login";
 import Dashboard from "../../containers/Dashboard/Dashboard";
 import Task from "../../containers/Task/Task";
+import TaskUpdate from "../../containers/TaskUpdate/TaskUpdate";
 import Rewards from "../../containers/Rewards/Rewards";
 import RewardsUpdate from "../../containers/RewardsUpdate/RewardsUpdate";
 import Communication from "../../containers/Communication/Communication";
@@ -44,7 +45,8 @@ const NavBar = () => {
         <Route path="/login" component={Login} />
         <Route path="/registration" component={Registration} />
         <Route path="/dashboard" component={Dashboard} />
-        <Route path="/task" component={Task} />
+        <Route exact path="/task" component={Task} />
+        <Route exact path="/task/update/:id" component={TaskUpdate} />
         <Route exact path="/rewards" component={Rewards} />
         <Route exact path="/rewards/update/:id" component={RewardsUpdate} />
         <Route path="/communication" component={Communication} />
