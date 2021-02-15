@@ -48,8 +48,8 @@ const Registration = () => {
   const onFinish = (values: any) => {
     console.log("Received values of form: ", values);
     axios
-      .post("/api/auth", values)
-      .then((response) => console.log(response.data));
+      .post("/api/registration", values)
+      .then((response) => window.location.replace("/login"));
   };
 
   const prefixSelector = (
@@ -88,8 +88,8 @@ const Registration = () => {
           ]}
         >
           <Select>
-            <Select.Option value="Role">Clinician</Select.Option>
-            <Select.Option value="Role">Parent</Select.Option>
+            <Select.Option value="Clinician">Clinician</Select.Option>
+            <Select.Option value="Parent">Parent</Select.Option>
           </Select>
         </Form.Item>
         <Form.Item
@@ -213,11 +213,11 @@ const Registration = () => {
           ]}
         >
           <Select>
-            <Select.Option value="Token Type">Stickers</Select.Option>
-            <Select.Option value="Token Type">Stars</Select.Option>
-            <Select.Option value="Token Type">Points</Select.Option>
-            <Select.Option value="Token Type">Coins</Select.Option>
-            <Select.Option value="Token Type">Dollars</Select.Option>
+            <Select.Option value="Stickers">Stickers</Select.Option>
+            <Select.Option value="Stars">Stars</Select.Option>
+            <Select.Option value="Points">Points</Select.Option>
+            <Select.Option value="Coins">Coins</Select.Option>
+            <Select.Option value="Dollars">Dollars</Select.Option>
           </Select>
         </Form.Item>
 
