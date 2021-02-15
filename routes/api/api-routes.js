@@ -87,6 +87,18 @@ router.get("/api/tasks/:id", ({ body, params }, res) => {
     });
 });
 
+// user id for tasks
+router.get("/api/tasks/user/:id", ({ body, params }, res) => {
+  console.log(body);
+  db.Task.find({user_id:params.id})
+    .then((updateTask) => {
+      res.json(updateTask);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
+
 router.post("/api/tasks", (req, res) => {
   db.Task.create(req.body)
     .then((newTask) => {

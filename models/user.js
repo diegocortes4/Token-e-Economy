@@ -24,15 +24,27 @@ const userSchema = new Schema({
     trim: true,
     required: "Enter your password",
   },
-  tasks_complete: [
+  // tasks_complete: [
+  //   {
+  //     type: Schema.Types.ObjectId,
+  //     ref: "Task",
+  //   },
+  // ],
+  // tasks_current: [
+  //   {
+  //     type: Schema.Types.ObjectId,
+  //     ref: "Task",
+  //   },
+  // ],
+  // token_total: {
+  //   type: Number,
+  // },
+  token_data: [
     {
-      type: Schema.Types.ObjectId,
-      ref: "Task",
+      type: Date,
+      type: Number,
     },
   ],
-  token_total: {
-    type: Number,
-  },
   token_type: {
     type: String,
     required: true,

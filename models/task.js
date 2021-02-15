@@ -5,6 +5,12 @@ const taskSchema = new Schema({
   day: {
     type: String,
   },
+  user_id: {
+    type: Schema.Types.ObjectId,
+  },
+  task_completed: {
+    type: Boolean,
+  },
   task_name: {
     type: String,
     required: true,
