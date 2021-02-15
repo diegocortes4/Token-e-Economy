@@ -39,12 +39,12 @@ const userSchema = new Schema({
   // token_total: {
   //   type: Number,
   // },
-  token_data: [
-    {
-      type: Date,
-      type: Number,
-    },
-  ],
+  // token_data: [
+  //   {
+  //     type: Date,
+  //     type: Number,
+  //   },
+  // ],
   token_type: {
     type: String,
     required: true,
