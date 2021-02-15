@@ -90,7 +90,7 @@ router.get("/api/tasks/:id", ({ body, params }, res) => {
 // user id for tasks
 router.get("/api/tasks/user/:id", ({ body, params }, res) => {
   console.log(body);
-  db.Task.find({user_id:params.id})
+  db.Task.find({ user_id: params.id })
     .then((updateTask) => {
       res.json(updateTask);
     })
@@ -177,14 +177,14 @@ router.delete("/api/users/:id", (req, res) => {
   });
 });
 
-// router.get("/api/workouts/range", (req, res) => {
-//     db.Workout.find({}).limit(7).sort({ date: -1 })
-//         .then((dbWorkout) => {
-//             res.json(dbWorkout);
-//         })
-//         .catch(err => {
-//             res.json(err);
-//         });
-// });
+router.post("/api/registration", (req, res) => {
+  db.User.create(req.body)
+    .then((newUser) => {
+      console.log(newUser);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
 
 module.exports = router;
