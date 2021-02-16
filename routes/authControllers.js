@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const { request } = require("express");
 
 router.post("/", (req, res) => {
-    console.log(req.body);
+  console.log(req.body);
   bcrypt.hash(req.body.password, 10).then((hashedPassword) => {
     console.log(hashedPassword);
     // const newUser = {
