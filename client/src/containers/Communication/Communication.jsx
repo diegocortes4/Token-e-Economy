@@ -84,7 +84,8 @@ const  Communication = () => {
     <main>
       <h1>Contact Us</h1>
       <hr />
-      <form onSubmit={handleOnSubmit}>
+      <div id="form-container">
+      <form id="the-form-itself" onSubmit={handleOnSubmit}>
         <label htmlFor="name">Name</label>
         <input
           id="name"
@@ -119,6 +120,7 @@ const  Communication = () => {
             : 'Submitting...'}
         </button>
       </form>
+      </div>
       {status.info.error && (
         <div className="error">Error: {status.info.msg}</div>
       )}
