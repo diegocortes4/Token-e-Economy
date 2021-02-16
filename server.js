@@ -31,17 +31,17 @@ connection.on("error", (err) => {
 });
 const authentication = require("./routes/authControllers");
 const tasksController = require("./routes/tasksController");
-// const ProductsController = require("./controllers/productsController");
+
 
 app.use(express.static("client/build"));
 
 app.get("/api/config", (req, res) => {
   res.json({ success: true });
 });
+
 // app.use("/api/auth", authentication);
-app.use("/api/auth", authentication);
 app.use('/api/tasks', tasksController)
-// app.use("/api/products", ProductsController);
+
 //api routes
 app.use(require("./routes/api/api-routes"));
 console.log("third");
