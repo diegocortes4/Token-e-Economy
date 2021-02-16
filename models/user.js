@@ -36,9 +36,9 @@ const userSchema = new Schema({
   //     ref: "Task",
   //   },
   // ],
-  // token_total: {
-  //   type: Number,
-  // },
+  token_total: {
+    type: Number,
+  },
   // token_data: [
   //   {
   //     type: Date,

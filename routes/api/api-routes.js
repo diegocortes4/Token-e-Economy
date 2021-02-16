@@ -68,75 +68,12 @@ router.delete("/api/rewards/:id", (req, res) => {
   });
 });
 
-//task api routes
-router.get("/api/tasks", (req, res) => {
-  db.Task.find({})
-    .then((foundTasks) => {
-      res.json(foundTasks);
-    })
-    .catch((err) => {
-      res.json(err);
-    });
-});
 
-router.get("/api/tasks/:id", ({ body, params }, res) => {
-  console.log(body);
-  db.Task.findById(params.id)
-    .then((updateTask) => {
-      res.json(updateTask);
-    })
-    .catch((err) => {
-      res.json(err);
-    });
-});
 
-// user id for tasks
-router.get("/api/tasks/user/:id", ({ body, params }, res) => {
-  console.log(body);
-  db.Task.find({ user_id: params.id })
-    .then((updateTask) => {
-      res.json(updateTask);
-    })
-    .catch((err) => {
-      res.json(err);
-    });
-});
 
-router.post("/api/tasks", (req, res) => {
-  db.Task.create(req.body)
-    .then((newTask) => {
-      res.json(newTask);
-    })
-    .catch((err) => {
-      res.json(err);
-    });
-});
 
-router.put("/api/tasks/:id", ({ body, params }, res) => {
-  db.Task.findByIdAndUpdate(
-    params.id,
-    {
-      task_name: body.task_name,
-      target_behavior: body.target_behavior,
-      clinician_notes: body.clinician_notes,
-      token_value: body.token_value,
-    },
-    // "runValidators" will ensure new exercises meet our schema requirements
-    { new: true, runValidators: true }
-  )
-    .then((updateTask) => {
-      res.json(updateTask);
-    })
-    .catch((err) => {
-      res.json(err);
-    });
-});
 
-router.delete("/api/tasks/:id", (req, res) => {
-  db.Task.findByIdAndDelete(req.params.id).then((result) => {
-    res.json(result);
-  });
-});
+
 
 //user api routes
 router.get("/api/users", (req, res) => {
