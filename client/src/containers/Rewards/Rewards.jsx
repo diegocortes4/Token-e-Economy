@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { Table, Space } from "antd";
 import RewardForm from "../../components/RewardForm/RewardForm";
+import TotalTokens from "../../components/TotalTokens/TotalTokens";
 
 const { Column } = Table;
 
@@ -67,7 +68,7 @@ const Rewards = () => {
           key="action"
           render={(record) => (
             <Space size="middle">
-              <a>Completed</a>
+              <a>Redeem</a>
               <a
                 onClick={() => {
                   console.log(record._id);
@@ -89,6 +90,7 @@ const Rewards = () => {
           )}
         />
       </Table>
+      <TotalTokens handleFormSubmit={handleFormSubmit} />
       <RewardForm handleFormSubmit={handleFormSubmit} />
     </>
   );
