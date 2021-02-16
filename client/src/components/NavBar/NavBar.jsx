@@ -33,6 +33,9 @@ const NavBar = () => {
                 Task
               </Link>
             </Menu.Item>
+            {/* <Menu.Item key="3">
+              <Link to={"/task"}>Task</Link>
+            </Menu.Item> */}
             <Menu.Item key="4">
               <Link to={"/rewards"}>Rewards</Link>
             </Menu.Item>
@@ -48,6 +51,7 @@ const NavBar = () => {
         <Route path="/registration" component={Registration} />
         <Route path="/dashboard" component={Dashboard} />
         <Route exact path="/task/:id" component={Task} />
+        {/* <Route exact path="/task" component={Task} /> */}
         <Route exact path="/task/update/:id" component={TaskUpdate} />
         <Route exact path="/rewards" component={Rewards} />
         <Route exact path="/rewards/update/:id" component={RewardsUpdate} />
