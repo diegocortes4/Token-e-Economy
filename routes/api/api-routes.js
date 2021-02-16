@@ -1,5 +1,8 @@
 const router = require("express").Router();
 const db = require("../../models");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
 
 //health check route
 router.get("/api/healthcheck", (req, res) => {
@@ -65,12 +68,75 @@ router.delete("/api/rewards/:id", (req, res) => {
   });
 });
 
+// //task api routes
+// router.get("/api/tasks", (req, res) => {
+//   db.Task.find({})
+//     .then((foundTasks) => {
+//       res.json(foundTasks);
+//     })
+//     .catch((err) => {
+//       res.json(err);
+//     });
+// });
 
+// router.get("/api/tasks/:id", ({ body, params }, res) => {
+//   console.log(body);
+//   db.Task.findById(params.id)
+//     .then((updateTask) => {
+//       res.json(updateTask);
+//     })
+//     .catch((err) => {
+//       res.json(err);
+//     });
+// });
 
+// // user id for tasks
+// router.get("/api/tasks/user/:id", ({ body, params }, res) => {
+//   console.log(body);
+//   db.Task.find({ user_id: params.id })
+//     .then((updateTask) => {
+//       res.json(updateTask);
+//     })
+//     .catch((err) => {
+//       res.json(err);
+//     });
+// });
 
+// router.post("/api/tasks", (req, res) => {
+//   db.Task.create(req.body)
+//     .then((newTask) => {
+//       res.json(newTask);
+//     })
+//     .catch((err) => {
+//       res.json(err);
+//     });
+// });
 
+// router.put("/api/tasks/:id", ({ body, params }, res) => {
+//   db.Task.findByIdAndUpdate(
+//     params.id,
+//     {
+//       task_name: body.task_name,
+//       target_behavior: body.target_behavior,
+//       clinician_notes: body.clinician_notes,
+//       token_value: body.token_value,
+//     },
+//     // "runValidators" will ensure new exercises meet our schema requirements
+//     { new: true, runValidators: true }
+//   )
+//     .then((updateTask) => {
+//       res.json(updateTask);
+//     })
+//     .catch((err) => {
+//       res.json(err);
+//     });
+// });
 
-
+// router.delete("/api/tasks/:id", (req, res) => {
+//   db.Task.findByIdAndDelete(req.params.id).then((result) => {
+//     res.json(result);
+//   });
+// });
 
 //user api routes
 router.get("/api/users", (req, res) => {
@@ -115,13 +181,62 @@ router.delete("/api/users/:id", (req, res) => {
 });
 
 router.post("/api/registration", (req, res) => {
-  db.User.create(req.body)
-    .then((newUser) => {
-      console.log(newUser);
-    })
-    .catch((err) => {
-      res.json(err);
+  bcrypt.hash(req.body.password, 10).then(
+    (hashedPassword) => {
+      console.log(hashedPassword);
+      const newUser = { ...req.body };
+      newUser.password = hashedPassword;
+      db.User.create(newUser)
+        .then((newUser) => {
+          console.log(newUser);
+          // TODO: Require jwt (jsonwebtoken)
+          // TODO: Create a token and console.log it
+          // TODO: Send the token back instead of the new user object.
+          const token = jwt.sign(
+            { _id: newUser._id },
+            process.env.JWT_SIGNATURE,
+            {
+              expiresIn: 60 * 60,
+            }
+          );
+          console.log(token);
+          res.json({
+            token: token,
+          });
+          // res.json(token);
+        })
+        .catch((err) => {
+          res.json(err);
+        });
+    }
+  )
+});
+
+router.post("/api/auth/login", (req, res) => {
+  console.log("route")
+  db.User.findOne({ email: req.body.email.toLowerCase() }).then((foundUser) => {
+    console.log(foundUser);
+    bcrypt.compare(req.body.password, foundUser.password).then((result) => {
+      console.log(result);
+      if (result) {
+        const token = jwt.sign(
+          { _id: foundUser._id },
+          process.env.JWT_SIGNATURE,
+          {
+            expiresIn: 60 * 60,
+          }
+        );
+        console.log(token);
+        res.json({
+          token: token,
+          id: foundUser._id
+        });
+
+      } else {
+        res.status(401).end();
+      }
     });
+  });
 });
 
 module.exports = router;

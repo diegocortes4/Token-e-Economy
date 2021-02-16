@@ -119,7 +119,7 @@ const Registration = () => {
           label={
             <span>
               Email Address&nbsp;
-              <Tooltip title="This email address will be used as your login name.">
+              <Tooltip title="This email address will be used as your username.">
                 <QuestionCircleOutlined />
               </Tooltip>
             </span>

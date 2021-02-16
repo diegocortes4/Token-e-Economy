@@ -3,8 +3,8 @@ import axios from "axios";
 import { Form, Input, Button, Checkbox } from "antd";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-// import { useHistory } from "react-router-dom";
-// import jwt from "jsonwebtoken";
+import { useHistory } from "react-router-dom";
+import jwt from "jsonwebtoken";
 
 const layout = {
   labelCol: { span: 8 },
@@ -14,65 +14,67 @@ const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 };
 
-const onFinish = (values: any) => {
-  console.log("Success:", values);
-  axios
-      .post("/api/auth/login", { email: values.username, password: values.password })
-      .then((response) => {
-        console.log(response.data);
-        sessionStorage.setItem("currentuserid",response.data.id)
-        // jwt.verify(
-        //   response.data.token,
-        //   process.env.REACT_APP_JWT_SIGNATURE,
-        //   (err, decoded) => {
-        //     if (err) {
-        //       console.log(err);
-        //     } else {
-        //       setToken(response.data.token);
-        //       history.push("/admin");
-        //     }
-        //   }
-        // );
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-};
-
 const onFinishFailed = (errorInfo: any) => {
   console.log("Failed:", errorInfo);
 };
 
-const Login = ({ setToken }) => {
+const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [token, setToken] = useState("");
+  const history = useHistory();
 
-  // const history = useHistory();
-
-  const handleFormSubmit = (e) => {
-    // e.preventDefault();
+  const onFinish = (values: any) => {
+    console.log("Success:", values);
     axios
-      .post("/api/auth/login", { username, password })
+      .post("/api/auth/login", {
+        email: values.username,
+        password: values.password,
+      })
       .then((response) => {
         console.log(response.data);
-        sessionStorage.setItem("currentuserid",response.data.id)
-        // jwt.verify(
-        //   response.data.token,
-        //   process.env.REACT_APP_JWT_SIGNATURE,
-        //   (err, decoded) => {
-        //     if (err) {
-        //       console.log(err);
-        //     } else {
-        //       setToken(response.data.token);
-        //       history.push("/admin");
-        //     }
-        //   }
-        // );
+        sessionStorage.setItem("currentuserid", response.data.id);
+        jwt.verify(
+          response.data.token,
+          process.env.REACT_APP_JWT_SIGNATURE,
+          (err, decoded) => {
+            if (err) {
+              console.log(err);
+            } else {
+              setToken(response.data.token);
+              history.push("/task/" + response.data.id);
+            }
+          }
+        );
       })
       .catch((err) => {
         console.log(err);
       });
   };
+  // const handleFormSubmit = (e) => {
+  //   // e.preventDefault();
+  //   axios
+  //     .post("/api/auth/login", { username, password })
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       sessionStorage.setItem("currentuserid", response.data.id);
+  //       jwt.verify(
+  //         response.data.token,
+  //         process.env.REACT_APP_JWT_SIGNATURE,
+  //         (err, decoded) => {
+  //           if (err) {
+  //             console.log(err);
+  //           } else {
+  //             setToken(response.data.token);
+  //             history.push("/admin");
+  //           }
+  //         }
+  //       );
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   return (
     <>

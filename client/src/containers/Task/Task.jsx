@@ -42,6 +42,8 @@ const Task = () => {
       .get("/api/tasks")
       .then((response) => {
         console.log(response.data);
+        // loop through all the tasks and filter the tasks
+
         setData(response.data);
       })
       .catch((err) => {
@@ -54,8 +56,8 @@ const Task = () => {
   const handleFormSubmit = (e, taskData) => {
     console.log(taskData);
     e.preventDefault();
-    taskData.user_id=("60299d7a80a4a20714564d86")
-    taskData.task_completed=Boolean(false)
+    taskData.user_id = "60299d7a80a4a20714564d86";
+    taskData.task_completed = Boolean(false);
     axios
       .post("/api/tasks", taskData)
       .then((response) => {
