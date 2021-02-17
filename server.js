@@ -31,7 +31,7 @@ connection.on("error", (err) => {
 });
 // const authentication = require("./routes/authControllers");
 const tasksController = require("./routes/tasksController");
-
+const rewardsController = require("./routes/rewardsController");
 
 app.use(express.static("client/build"));
 
@@ -40,7 +40,8 @@ app.get("/api/config", (req, res) => {
 });
 
 // app.use("/api/auth", authentication);
-app.use('/api/tasks', tasksController)
+app.use("/api/tasks", tasksController);
+app.use("/api/rewards", rewardsController);
 
 //api routes
 app.use(require("./routes/api/api-routes"));
