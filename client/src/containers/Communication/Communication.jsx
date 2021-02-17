@@ -2,7 +2,7 @@
 import { Form, Input, Button } from "antd";
 import React, { useState } from "react";
 import axios from "axios";
-import communication from "../Communication/communication.css";
+import "./Communication.css";
 
 const layout = {
   labelCol: {
@@ -81,7 +81,7 @@ const Communication = () => {
   };
   return (
     <main>
-      <h1>Contact Us</h1>
+      <h1 className="contact-us">Contact Us</h1>
       <hr />
       <div id="form-container">
         <form id="the-form-itself" onSubmit={handleOnSubmit}>
@@ -111,7 +111,11 @@ const Communication = () => {
             required
             value={inputs.message}
           />
-          <button type="submit" disabled={status.submitting}>
+          <button
+            type="submit"
+            disabled={status.submitting}
+            className="button-design"
+          >
             {!status.submitting
               ? !status.submitted
                 ? "Submit"
