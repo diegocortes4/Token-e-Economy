@@ -67,16 +67,12 @@ const Login = () => {
         An Effective Token Economy Platform to Motivate Child Behavior
       </h1>
       <div className="space-align-container">
-        {/* <div className="space-align-block"> */}
-        <Space align="center">
-          <Image
-            preview={false}
-            width="500"
-            src="./img/Clinician-Work-With-Child.jpeg"
-            alt="Clinician-Work-With-Child"
-          />
-        </Space>
-        {/* </div> */}
+        <Image
+          preview={false}
+          width="500"
+          src="./img/Clinician-Work-With-Child.jpeg"
+          alt="Clinician-Work-With-Child"
+        />
       </div>
       <Form
         {...layout}

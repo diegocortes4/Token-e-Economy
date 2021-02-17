@@ -1,11 +1,15 @@
 .app-logo {
-  width: 30%;
+  width: 25%;
   margin: 0%;
+}
+
+.space-align-container {
+  text-align: center;
 }
 
 .ant-image-img {
   width: max-content;
-  margin: 25px;
+  margin: 25px auto;
 }
 
 .title {
