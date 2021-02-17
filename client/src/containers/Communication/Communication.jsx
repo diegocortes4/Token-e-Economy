@@ -2,7 +2,7 @@
 import { Form, Input, Button } from "antd";
 import React, { useState } from "react";
 import axios from "axios";
-import "./Communication.css";
+import "./communication.css";
 
 const layout = {
   labelCol: {
