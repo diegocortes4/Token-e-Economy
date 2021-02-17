@@ -1,15 +1,30 @@
-#form-container{
-    padding: 50px 0px;
-
-
+.contact-us {
+  color: cornflowerblue;
 }
 
-#the-form-itself{
-    display: flex;
-    flex-direction: column;
-   max-width: 600px;
-   margin: auto;
+#form-container {
+  padding: 50px 0px;
 }
+
+#the-form-itself {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: auto;
+}
+
+.button-design {
+  background-color: #008cba;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
 /* 
 input {
     border-radius: 25px;
