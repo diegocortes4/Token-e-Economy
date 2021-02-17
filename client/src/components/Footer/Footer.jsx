@@ -7,8 +7,8 @@ const AppFooter = () => {
   return (
     <>
       <Footer style={{ textAlign: "center" }}>
-        Copyright ©2021 Created by Fantastic Four at Georgia Tech Full Stack
-        Coding Bootcamp
+        Copyright ©2021 Fantastic Four at Georgia Tech Full Stack Coding
+        Bootcamp
       </Footer>
     </>
   );
