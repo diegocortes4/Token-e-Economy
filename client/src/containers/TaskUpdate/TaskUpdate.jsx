@@ -42,7 +42,8 @@ const Task = (props) => {
       .then((response) => {
         console.log(response.data);
         getTasks();
-        history.push("/task");
+        // history.push("/task");
+        history.goBack();
       })
       .catch((err) => {
         console.log(err);

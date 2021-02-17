@@ -69,9 +69,10 @@ const Task = () => {
         console.log(err);
       });
   };
-  const updateTask = (id) => {
+  const Completed = (id) => {
     axios
-      .put(`/api/tasks/${id}`, {
+      .put(``, {
+        // /api/tasks/${id}
         task_name: "update",
         target_behavior: "update",
         clinician_notes: "update",
@@ -126,10 +127,16 @@ const Task = () => {
           key="action"
           render={(record) => (
             <Space size="middle">
-              <a>Completed</a>
+              <a 
+              onClick={() => {
+                  console.log(record._id);
+             Completed(record._id);
+                }}
+                >Completed</a>
               <a
                 onClick={() => {
                   console.log(record._id);
+                  
                   history.push(`/task/update/${record._id}`);
                 }}
               >

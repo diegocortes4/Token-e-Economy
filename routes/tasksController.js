@@ -71,6 +71,7 @@ router.put("/:id/complete/user/:userId", (req, res) => {
 
 
 router.put("/:id", ({ body, params }, res) => {
+    console.log(body);
     db.Task.findByIdAndUpdate(
         params.id,
         {
