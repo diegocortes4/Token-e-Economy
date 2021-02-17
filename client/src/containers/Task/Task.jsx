@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { Table, Space } from "antd";
 import TaskForm from "../../components/TaskForm/TaskForm";
+// import {}
 
 const { Column } = Table;
 
@@ -95,6 +96,14 @@ const Task = () => {
   };
   return (
     <>
+      <div className="instruction">
+        <p>
+          A token economy system is one of the fastest and most effective ways
+          to get kids to follow the rules. Similar to a traditional reward
+          system, kids earn tokens throughout the day. Then, tokens can be
+          exchanged for bigger rewards.
+        </p>
+      </div>
       <Table dataSource={data} rowKey="_id">
         <Column title="Task Name" dataIndex="task_name" key="task_name" />
         <Column

@@ -1,0 +1,33 @@
+.app-logo {
+  width: 30%;
+  margin: 0%;
+}
+
+.ant-image-img {
+  width: max-content;
+  margin: 25px;
+}
+
+.title {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: rgb(40, 19, 161);
+  font-weight: 800;
+  text-shadow: rgb(10, 50, 50);
+}
+
+.tagline {
+  text-align: center;
+  color: rgb(0, 153, 255);
+  font-family: fantasy;
+  font-weight: 900;
+  font-size: 25px;
+  font-style: italic;
+}
+
+.login-form-button {
+  margin-right: 10px;
+}
+
+.login-form-forgot {
+  margin-left: 10px;
+}

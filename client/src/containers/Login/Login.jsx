@@ -1,10 +1,11 @@
 import React from "react";
 import axios from "axios";
-import { Form, Input, Button, Checkbox } from "antd";
+import { Form, Input, Button, Checkbox, Image, Space } from "antd";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import jwt from "jsonwebtoken";
+import "./Login.css";
 
 const layout = {
   labelCol: { span: 8 },
@@ -51,35 +52,32 @@ const Login = () => {
         console.log(err);
       });
   };
-  // const handleFormSubmit = (e) => {
-  //   // e.preventDefault();
-  //   axios
-  //     .post("/api/auth/login", { username, password })
-  //     .then((response) => {
-  //       console.log(response.data);
-  //       sessionStorage.setItem("currentuserid", response.data.id);
-  //       jwt.verify(
-  //         response.data.token,
-  //         process.env.REACT_APP_JWT_SIGNATURE,
-  //         (err, decoded) => {
-  //           if (err) {
-  //             console.log(err);
-  //           } else {
-  //             setToken(response.data.token);
-  //             history.push("/admin");
-  //           }
-  //         }
-  //       );
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
 
   return (
     <>
-      <h1>Token-e-Economy</h1>
-
+      <span>
+        <img
+          preview={false}
+          src="./img/token-e-economy.jpg"
+          alt="Clinician-Work-With-Child"
+          className="app-logo"
+        />
+      </span>
+      <h1 className="tagline">
+        An Effective Token Economy Platform to Motivate Child Behavior
+      </h1>
+      <div className="space-align-container">
+        {/* <div className="space-align-block"> */}
+        <Space align="center">
+          <Image
+            preview={false}
+            width="500"
+            src="./img/Clinician-Work-With-Child.jpeg"
+            alt="Clinician-Work-With-Child"
+          />
+        </Space>
+        {/* </div> */}
+      </div>
       <Form
         {...layout}
         name="basic"
@@ -114,7 +112,6 @@ const Login = () => {
         >
           <Input.Password />
         </Form.Item>
-
         <Form.Item {...tailLayout}>
           <Form.Item name="remember" valuePropName="checked" noStyle>
             <Checkbox>Remember me</Checkbox>
