@@ -4,6 +4,12 @@
 
 #form-container {
   padding: 50px 0px;
+  background:
+      url('./pic.jpg')
+      no-repeat
+      center;
+  background-size: cover;
+  
 }
 
 #the-form-itself {
@@ -14,7 +20,9 @@
 }
 
 .button-design {
-  background-color: #008cba;
+  background-color: #1890ff;
+  width: 40%;
+  margin: 15px auto;
   border: none;
   border-radius: 4px;
   color: white;
