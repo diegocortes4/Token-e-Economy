@@ -17,12 +17,16 @@ const NavBar = () => {
   return (
     <Router>
       <Layout>
+      {/* <img src={banana} height={40} width={40}>
+      </img> */}
         <Header className="header">
           <div className="logo" />
           <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["1"]}>
-            <img src={banana} height={40} width={40}>
-            </img>
+            {/* <img src={banana} height={40} width={40}>
+            </img> */}
             <Menu.Item key="1">
+            {/* <img src={banana} height={40} width={40}>
+            </img> */}
               <Link to={"/login"}>Login</Link>
             </Menu.Item>
             {/* <Menu.Item key="2">
@@ -47,6 +51,8 @@ const NavBar = () => {
             </Menu.Item>
           </Menu>
         </Header>
+          <img src={banana} height={40} width={40}>
+          </img>
       </Layout>
 
       <Switch>

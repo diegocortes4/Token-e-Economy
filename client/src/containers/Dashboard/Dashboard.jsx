@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
+import "./Dashboard.css";
 // import { json } from "express";
 
 //Will need to run an api call to get all users.  Users returns an array.  Pick out the name and total tokens from the objects.
@@ -72,7 +73,7 @@ export default class Dashboard extends Component {
   render() {
     return (
       <div>
-        <h2>Task Rewards Chart</h2>
+      <h1 className="chart-text">Task Chart</h1>
         <Line ref="chart" data={this.state.data} />
       </div>
     );

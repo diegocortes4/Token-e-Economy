@@ -5,6 +5,7 @@ import { Table, Space } from "antd";
 import RewardForm from "../../components/RewardForm/RewardForm";
 import TotalTokens from "../../components/TotalTokens/TotalTokens";
 import { set } from "mongoose";
+import "./Rewards.css";
 
 const { Column } = Table;
 
@@ -90,6 +91,7 @@ const Rewards = () => {
 
   return (
     <>
+      <h1 className="rewards-text">Rewards</h1>
       <Table dataSource={data} rowKey="_id">
         <Column title="Reward Name" dataIndex="description" key="description" />
         <Column title="Token Value" dataIndex="token_value" key="token_value" />

@@ -5,6 +5,7 @@ import { Table, Typography, Space, Row, Col } from "antd";
 import TaskForm from "../../components/TaskForm/TaskForm";
 import TotalTokens from "../../components/TotalTokens/TotalTokens";
 import { set } from "mongoose";
+import "./Task.css";
 
 const { Column } = Table;
 
@@ -98,6 +99,7 @@ const Task = () => {
 
   return (
     <>
+      <h1 className="task-text">Task</h1>
       <p></p>
       <Row>
         <Col span={24}></Col>
