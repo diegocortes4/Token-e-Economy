@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import { Table, Space } from "antd";
+import { Table, Typography, Space, Row, Col } from "antd";
 import TaskForm from "../../components/TaskForm/TaskForm";
 // import {}
 
@@ -36,6 +36,7 @@ const { Column } = Table;
 // ];
 
 const Task = () => {
+  const { Text } = Typography;
   const [data, setData] = useState([]);
   const history = useHistory();
   const getTasks = () => {
@@ -97,19 +98,30 @@ const Task = () => {
   };
   return (
     <>
-      <div>
-        <p className="space-align-container">
-          A token economy system is one of the fastest and most effective ways
-          to get kids to follow the rules. Similar to a traditional reward
-          system, kids earn tokens throughout the day. Then, tokens can be
-          exchanged for bigger rewards. The following page helps you track your
-          child's completed tasks with the associated number of tokens. Please
-          click the "completed" button next to the task your child performs
-          based on the definition specified in Target Behavior and Clinician
-          Notes. Later, your child should be able to exchange the received
-          tokens with various rewards on the Rewards page.
-        </p>
-      </div>
+      <p></p>
+      <Row>
+        <Col span={24}></Col>
+      </Row>
+      <Row>
+        <Col span={6}></Col>
+        <Col span={12}>
+          <Text mark>
+            A token economy system is one of the fastest and most effective ways
+            to get kids to follow the rules. Similar to a traditional reward
+            system, kids earn tokens throughout the day. Then, tokens can be
+            exchanged for bigger rewards. The following page helps you track
+            your child's completed tasks with the associated number of tokens.
+            Please click the "completed" button next to the task your child
+            performs based on the definition specified in Target Behavior and
+            Clinician Notes. Later, your child should be able to exchange the
+            received tokens with various rewards on the Rewards page.
+          </Text>
+        </Col>
+        <Col span={6}></Col>
+      </Row>
+      <p></p>
+      <p></p>
+
       <Table dataSource={data} rowKey="_id">
         <Column title="Task Name" dataIndex="task_name" key="task_name" />
         <Column
