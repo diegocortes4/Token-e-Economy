@@ -3,49 +3,22 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { Table, Typography, Space, Row, Col } from "antd";
 import TaskForm from "../../components/TaskForm/TaskForm";
-// import {}
+import TotalTokens from "../../components/TotalTokens/TotalTokens";
+import { set } from "mongoose";
 
 const { Column } = Table;
 
-// const dataOld = [
-//   {
-//     key: "1",
-//     taskName: "Wash Dishes",
-//     tokenReceived: "5",
-//   },
-//   {
-//     key: "2",
-//     taskName: "Clean Room",
-//     tokenReceived: "5",
-//   },
-//   {
-//     key: "3",
-//     taskName: "Brush Teeth",
-//     tokenReceived: "2",
-//   },
-//   {
-//     key: "4",
-//     taskName: "Do Homework",
-//     tokenReceived: "3",
-//   },
-//   {
-//     key: "5",
-//     taskName: "Make Bed",
-//     tokenReceived: "3",
-//   },
-// ];
-
 const Task = () => {
   const { Text } = Typography;
+  const userId = sessionStorage.getItem("currentuserid");
   const [data, setData] = useState([]);
+  const [tokenData, setTokenData] = useState([]);
   const history = useHistory();
   const getTasks = () => {
     axios
       .get("/api/tasks")
       .then((response) => {
         console.log(response.data);
-        // loop through all the tasks and filter the tasks
-
         setData(response.data);
       })
       .catch((err) => {
@@ -54,12 +27,13 @@ const Task = () => {
   };
   useEffect(() => {
     getTasks();
+    getUser();
   }, []);
   const handleFormSubmit = (e, taskData) => {
     console.log(taskData);
     e.preventDefault();
-    taskData.user_id = "60299d7a80a4a20714564d86";
-    taskData.task_completed = Boolean(false);
+    // taskData.user_id = "60299d7a80a4a20714564d86";
+    // taskData.task_completed = Boolean(false);
     axios
       .post("/api/tasks", taskData)
       .then((response) => {
@@ -96,6 +70,32 @@ const Task = () => {
         console.log(err);
       });
   };
+
+  const handleRedeem = (id) => {
+    axios
+      .put(`/api/tasks/${id}/complete/user/${userId}`)
+      .then(() => {
+        getTasks();
+        getUser();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const getUser = () => {
+    axios
+      .get(`/api/users/${userId}`)
+      // .get("/api/users")
+      .then((response) => {
+        console.log(response.data);
+        setTokenData(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <>
       <p></p>
@@ -146,8 +146,7 @@ const Task = () => {
             <Space size="middle">
               <a
                 onClick={() => {
-                  console.log(record._id);
-                  Completed(record._id);
+                  handleRedeem(record._id);
                 }}
               >
                 Completed
@@ -173,6 +172,11 @@ const Task = () => {
           )}
         />
       </Table>
+      <TotalTokens
+        handleFormSubmit={handleFormSubmit}
+        getUser={getUser}
+        data={[tokenData]}
+      />
       <TaskForm handleFormSubmit={handleFormSubmit} />
     </>
   );
