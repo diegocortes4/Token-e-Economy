@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
 
+//Will need to run an api call to get all users.  Users returns an array.  Pick out the name and total tokens from the objects.
+//Populate the arrays below
 const data = {
   labels: [
     "Monday",

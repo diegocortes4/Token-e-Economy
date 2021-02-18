@@ -38,6 +38,7 @@ const userSchema = new Schema({
   // ],
   token_total: {
     type: Number,
+    default: 0,
   },
   // token_data: [
   //   {
