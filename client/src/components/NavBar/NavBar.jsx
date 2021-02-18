@@ -9,6 +9,7 @@ import TaskUpdate from "../../containers/TaskUpdate/TaskUpdate";
 import Rewards from "../../containers/Rewards/Rewards";
 import RewardsUpdate from "../../containers/RewardsUpdate/RewardsUpdate";
 import Communication from "../../containers/Communication/Communication";
+import banana from "../../assets/token_logo_icon.png";
 
 const { Header } = Layout;
 
@@ -19,6 +20,8 @@ const NavBar = () => {
         <Header className="header">
           <div className="logo" />
           <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["1"]}>
+            <img src={banana} height={40} width={40}>
+            </img>
             <Menu.Item key="1">
               <Link to={"/login"}>Login</Link>
             </Menu.Item>
