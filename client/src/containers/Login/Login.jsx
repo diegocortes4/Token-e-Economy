@@ -59,7 +59,7 @@ const Login = () => {
         <img
           preview={false}
           src="./img/token-e-economy.jpg"
-          alt="Clinician-Work-With-Child"
+          alt="Logo"
           className="app-logo"
         />
       </span>
