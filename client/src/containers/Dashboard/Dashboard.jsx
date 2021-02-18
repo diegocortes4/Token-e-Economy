@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import axios from "axios";
 import { Line } from "react-chartjs-2";
+// import { json } from "express";
 
 //Will need to run an api call to get all users.  Users returns an array.  Pick out the name and total tokens from the objects.
 //Populate the arrays below
@@ -39,17 +41,48 @@ const data = {
 };
 
 export default class Dashboard extends Component {
+  state = { data: data };
+  getUser = () => {
+    axios
+      .get(`/api/users/`)
+      .then((response) => {
+        console.log(response.data);
+        const users = response.data.map((user) => user.name);
+        const tokens = response.data.map((user) => user.token_total);
+        console.log(tokens);
+        const temp = { ...this.state.data };
+        console.log(temp);
+        temp.labels = users;
+        temp.datasets.data = tokens;
+        this.setState((data) => ({
+          data: {
+            ...data,
+            labels: users,
+            datasets: [
+              { ...data.datasets, data: tokens, label: "Tokens by user" },
+            ],
+          },
+        }));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   render() {
     return (
       <div>
         <h2>Task Rewards Chart</h2>
-        <Line ref="chart" data={data} />
+        <Line ref="chart" data={this.state.data} />
       </div>
     );
   }
-
   componentDidMount() {
+    this.getUser();
     const { datasets } = this.refs.chart.chartInstance.data;
-    console.log(datasets[0].data);
   }
+  // componentDidMount() {
+  //   const { datasets } = this.refs.chart.chartInstance.data;
+  //   console.log(datasets[0].data);
+  // }
 }
