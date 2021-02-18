@@ -4,24 +4,13 @@ import { Table } from "antd";
 
 const { Column } = Table;
 
-const TotalTokens = () => {
+const TotalTokens = ({ getUser, data }) => {
   console.log(sessionStorage.getItem("currentuserid"));
-  const [data, setData] = useState([]);
-  const getUser = () => {
-    axios
-      // .get(`/api/users/${params.id}`)
-      .get("/api/users")
-      .then((response) => {
-        console.log(response.data);
-        setData(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-  useEffect(() => {
-    getUser();
-  }, []);
+
+  // useEffect(() => {
+  //   getUser();
+  // }, []);
+  console.log(data);
   return (
     <>
       <Table dataSource={data} rowKey="_id">
