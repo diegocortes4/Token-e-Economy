@@ -4,11 +4,14 @@ import axios from "axios";
 import { Table, Space } from "antd";
 import RewardForm from "../../components/RewardForm/RewardForm";
 import TotalTokens from "../../components/TotalTokens/TotalTokens";
+import { set } from "mongoose";
 
 const { Column } = Table;
 
 const Rewards = () => {
+  const userId = sessionStorage.getItem("currentuserid");
   const [data, setData] = useState([]);
+  const [tokenData, setTokenData] = useState([]);
   const history = useHistory();
   const getRewards = () => {
     axios
@@ -23,6 +26,7 @@ const Rewards = () => {
   };
   useEffect(() => {
     getRewards();
+    getUser();
   }, []);
   const handleFormSubmit = (e, taskData) => {
     console.log(taskData);
@@ -58,6 +62,32 @@ const Rewards = () => {
         console.log(err);
       });
   };
+
+  const handleRedeem = (id) => {
+    axios
+      .put(`/api/rewards/${id}/redeem/user/${userId}`)
+      .then(() => {
+        getRewards();
+        getUser();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const getUser = () => {
+    axios
+      .get(`/api/users/${userId}`)
+      // .get("/api/users")
+      .then((response) => {
+        console.log(response.data);
+        setTokenData(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <>
       <Table dataSource={data} rowKey="_id">
@@ -68,7 +98,13 @@ const Rewards = () => {
           key="action"
           render={(record) => (
             <Space size="middle">
-              <a>Redeem</a>
+              <a
+                onClick={() => {
+                  handleRedeem(record._id);
+                }}
+              >
+                Redeem
+              </a>
               <a
                 onClick={() => {
                   console.log(record._id);
@@ -90,7 +126,11 @@ const Rewards = () => {
           )}
         />
       </Table>
-      <TotalTokens handleFormSubmit={handleFormSubmit} />
+      <TotalTokens
+        handleFormSubmit={handleFormSubmit}
+        getUser={getUser}
+        data={[tokenData]}
+      />
       <RewardForm handleFormSubmit={handleFormSubmit} />
     </>
   );
