@@ -1,8 +1,9 @@
 import React from "react";
+import { BrowserRouter as Link } from "react-router-dom";
+import Agreement from "../../components/Agreement/Agreement";
 import { Form, Input, Tooltip, Select, Checkbox, Button } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import axios from "axios";
-
 const { Option } = Select;
 
 const formItemLayout = {
@@ -237,7 +238,8 @@ const Registration = () => {
           {...tailFormItemLayout}
         >
           <Checkbox>
-            I have read and accept the <a href="">agreement</a>
+            I have read and accept the{" "}
+            <a href="../../components/Agreement/Agreement.js">agreement</a>
           </Checkbox>
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
