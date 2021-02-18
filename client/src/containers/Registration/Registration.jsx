@@ -239,8 +239,9 @@ const Registration = () => {
         >
           <Checkbox>
             I have read and accept the{" "}
-            <a href="../../components/Agreement/Agreement.js">agreement</a>
+            {/* <a href="../../components/Agreement/Agreement.js">agreement</a> */}
           </Checkbox>
+          <Agreement/>
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
