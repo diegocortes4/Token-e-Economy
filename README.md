@@ -18,7 +18,7 @@
 
 ## Description
 
-This application was created to provide clinical support for a token economy system. The user registers as either a clinician or a parent. A registered user is able to create, update and delete tasks and rewards. As a child completes a task, he or she receives a token for the amount that the user chooses which is then added to the total token amount displayed on the task and rewards pages. When a child wants to redeem a reward that token amount is then subtracted from the total tokens. Clinician notes are added to each task. The token amount for completed tasks by each user is is displayed in the chart on the dashboard page. The communication page allows for the parent user to be able to send an email to the clinician. 
+This application was created to provide clinical support for a token economy system. The user registers as either a clinician or a parent. A registered user is able to create, update and delete tasks and rewards. As a child completes a task, he or she receives a token for the amount that the user chooses which is then added to the total token amount displayed on the task and rewards pages. When a child wants to redeem a reward that token amount is then subtracted from the total tokens. Clinician notes are added to each task. The token amount for completed tasks by each user is is displayed in the chart on the dashboard page. The communication page allows for the parent user to be able to send an email to the clinician.
 
 ## Screenshots
 
@@ -45,14 +45,13 @@ Must be backed by a database
 
 Must have CRUD routes for at least one model
 
-Must be deployed using Heroku 
+Must be deployed using Heroku
 
 Must utilize at least two new libraries, packages, or technologies that we haven't discussed
 
 Must have a polished front end/UI - NOT Bootstrap
 
 Must have a folder structure that meets the MVC paradigm
-
 
 Must meet good-quality coding standards (indentation, scoping, naming, etc.)
 
@@ -61,7 +60,7 @@ Must protect API keys and sensitive information
 
 ## Installation
 
-To access this project you will need to visit our GitHub page and the "Token-e-Economy" repository. After the repository is cloned/forked you can make edits to the project in your repository. Any questions should be directed to [Irene Asay](), [Brian Hayes](bhayes81@gmail.com), [Diego Cortes](), or [David Brown](mailto:gatech55@gmail.com). The official project can be found here: [final-project](https://github.com/diegocortes4/Token-e-Economy). The Heroku site can be found here: [Token-e-Economy](https://token-e-economy.herokuapp.com/).
+To access this project you will need to visit our GitHub page and the "Token-e-Economy" repository. After the repository is cloned/forked you can make edits to the project in your repository. Any questions should be directed to [Irene Asay](irene.hsu.asay@gmail.com), [Brian Hayes](bhayes81@gmail.com), [Diego Cortes](diegocortes4@gmail.com), or [David Brown](gatech55@gmail.com). The official project can be found here: [final-project](https://github.com/diegocortes4/Token-e-Economy). The Heroku site can be found here: [Token-e-Economy](https://token-e-economy.herokuapp.com/).
 
 ## Credits
 
