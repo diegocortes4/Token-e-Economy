@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Link } from "react-router-dom";
 import Agreement from "../../components/Agreement/Agreement";
 import { Form, Input, Tooltip, Select, Checkbox, Button } from "antd";
@@ -45,7 +45,7 @@ const tailFormItemLayout = {
 
 const Registration = () => {
   const [form] = Form.useForm();
-
+  const [isAgreed, setIsAgreed] = useState(false);
   const onFinish = (values: any) => {
     console.log("Received values of form: ", values);
     axios
@@ -225,26 +225,26 @@ const Registration = () => {
         <Form.Item
           name="agreement"
           valuePropName="checked"
-          rules={[
-            {
-              validator: (_, value) =>
-                value
-                  ? Promise.resolve()
-                  : Promise.reject(
-                      "Please review and accept the agreement before creating an account!"
-                    ),
-            },
-          ]}
+          // rules={[
+          //   {
+          //     validator: (_, value) =>
+          //       value
+          //         ? Promise.resolve()
+          //         : Promise.reject(
+          //             "Please review and accept the agreement before creating an account!"
+          //           ),
+          //   },
+          // ]}
           {...tailFormItemLayout}
         >
           <Checkbox>
             I have read and accept the{" "}
             {/* <a href="../../components/Agreement/Agreement.js">agreement</a> */}
           </Checkbox>
-          <Agreement/>
+          <Agreement setIsAgreed={setIsAgreed} />
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" disabled={!isAgreed}>
             Register
           </Button>
         </Form.Item>

@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
-import "./Dashboard.css";
 // import { json } from "express";
 
 //Will need to run an api call to get all users.  Users returns an array.  Pick out the name and total tokens from the objects.
 //Populate the arrays below
-const data = {
+const initialData = {
   labels: [
     "Monday",
     "Tuesday",
@@ -40,27 +39,24 @@ const data = {
     },
   ],
 };
-
 export default class Dashboard extends Component {
-  state = { data: data };
+  state = { chartData: initialData };
   getUser = () => {
     axios
       .get(`/api/users/`)
       .then((response) => {
-        console.log(response.data);
         const users = response.data.map((user) => user.name);
         const tokens = response.data.map((user) => user.token_total);
-        console.log(tokens);
-        const temp = { ...this.state.data };
-        console.log(temp);
-        temp.labels = users;
-        temp.datasets.data = tokens;
-        this.setState((data) => ({
-          data: {
-            ...data,
+
+        this.setState((prevState) => ({
+          chartData: {
             labels: users,
             datasets: [
-              { ...data.datasets, data: tokens, label: "Tokens by user" },
+              {
+                ...prevState.chartData.datasets[0],
+                data: tokens,
+                label: "Tokens by user",
+              },
             ],
           },
         }));
@@ -70,20 +66,16 @@ export default class Dashboard extends Component {
       });
   };
 
+  componentDidMount() {
+    this.getUser();
+  }
+
   render() {
     return (
       <div>
-      <h1 className="chart-text">Task Chart</h1>
-        <Line ref="chart" data={this.state.data} />
+        <h2>Task Rewards Chart</h2>
+        <Line data={this.state.chartData} />
       </div>
     );
   }
-  componentDidMount() {
-    this.getUser();
-    const { datasets } = this.refs.chart.chartInstance.data;
-  }
-  // componentDidMount() {
-  //   const { datasets } = this.refs.chart.chartInstance.data;
-  //   console.log(datasets[0].data);
-  // }
 }
