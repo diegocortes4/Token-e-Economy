@@ -13,6 +13,10 @@
   
 }
 
+#whiteText{
+  color: rgb(255, 255, 255);
+}
+
 #the-form-itself {
   display: flex;
   flex-direction: column;

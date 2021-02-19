@@ -85,7 +85,7 @@ const Communication = () => {
       <hr />
       <div id="form-container">
         <form id="the-form-itself" onSubmit={handleOnSubmit}>
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name" id="whiteText">Name</label>
           <input
             id="name"
             type="text"
@@ -94,7 +94,7 @@ const Communication = () => {
             required
             value={inputs.name}
           />
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email" id="whiteText">Email</label>
           <input
             id="email"
             type="email"
@@ -103,7 +103,7 @@ const Communication = () => {
             required
             value={inputs.email}
           />
-          <label htmlFor="message">Message</label>
+          <label htmlFor="message" id="whiteText">Message</label>
           <textarea
             id="message"
             name="message"
