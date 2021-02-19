@@ -17,7 +17,7 @@ const NavBar = () => {
   return (
     <Router>
       <Layout>
-      {/* <img src={banana} height={40} width={40}>
+        {/* <img src={banana} height={40} width={40}>
       </img> */}
         <Header className="header">
           <div className="logo" />
@@ -25,7 +25,7 @@ const NavBar = () => {
             {/* <img src={banana} height={40} width={40}>
             </img> */}
             <Menu.Item key="1">
-            {/* <img src={banana} height={40} width={40}>
+              {/* <img src={banana} height={40} width={40}>
             </img> */}
               <Link to={"/login"}>Login</Link>
             </Menu.Item>
@@ -51,8 +51,7 @@ const NavBar = () => {
             </Menu.Item>
           </Menu>
         </Header>
-          <img src={banana} height={40} width={40}>
-          </img>
+        <img src={banana} height={40} width={40}></img>
       </Layout>
 
       <Switch>
